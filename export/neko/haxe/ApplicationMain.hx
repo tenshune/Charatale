@@ -16,11 +16,11 @@ class ApplicationMain
 	#if !macro
 	public static function main()
 	{
-		lime.system.System.__registerEntryPoint("test", create);
+		lime.system.System.__registerEntryPoint("chocolateDummy", create);
 
 		#if (js && html5)
 		#if (munit || utest)
-		lime.system.System.embed("test", null, 640, 480);
+		lime.system.System.embed("chocolateDummy", null, 640, 480);
 		#end
 		#else
 		create(null);
@@ -35,10 +35,10 @@ class ApplicationMain
 		ManifestResources.init(config);
 		#end
 
-		app.meta["build"] = "15";
-		app.meta["company"] = "HaxeFlixel";
-		app.meta["file"] = "test";
-		app.meta["name"] = "test";
+		app.meta["build"] = "2";
+		app.meta["company"] = "Angelfoxiano";
+		app.meta["file"] = "chocolateDummy";
+		app.meta["name"] = "Charatale";
 		app.meta["packageName"] = "com.example.myapp";
 		app.meta["version"] = "0.0.1";
 
@@ -60,7 +60,7 @@ class ApplicationMain
 			minimized: false,
 			parameters: {},
 			resizable: true,
-			title: "test",
+			title: "Charatale",
 			width: 640,
 			x: null,
 			y: null,
@@ -102,7 +102,7 @@ class ApplicationMain
 		app.createWindow(attributes);
 		
 		#elseif air
-		app.window.title = "test";
+		app.window.title = "Charatale";
 		#else
 		app.window.context.attributes.background = 0;
 		app.window.frameRate = 60;

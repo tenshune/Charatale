@@ -1,8 +1,9 @@
 package;
 
+import flixel.graphics.frames.FlxAtlasFrames;
+
 class Paths {
-    
-    inline public static function getSparrowAtlas(sparrow:String) {
-       return "assets/images/"+sparrow;
+    static public function getSparrowAtlas(bitmap:String) {
+	    return FlxAtlasFrames.fromSparrow("assets/images/"+bitmap+".png", "assets/images/"+bitmap+".xml");
     }
 }
