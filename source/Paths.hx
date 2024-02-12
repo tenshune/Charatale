@@ -14,4 +14,8 @@ class Paths {
     static public function font(name:String) {
        return "assets/fonts/"+name+".ttf";
     }
+
+    static public function lang(lang:String, name:String) {
+       return "assets/langs/"+lang+"/"+name+".txt";
+    }
 }

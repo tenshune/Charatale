@@ -106,6 +106,7 @@ import sys.FileSystem;
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_left1_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_left2_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_logo_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_options_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_pc_computer___undertale___the_human_souls_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_right1_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_right2_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
@@ -113,6 +114,14 @@ import sys.FileSystem;
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_up1_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_up2_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_up3_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_en_continue_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_en_newgame_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_en_options_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_en_trophies_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_es_continue_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_es_newgame_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_es_options_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_es_trophies_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_music_music_goes_here_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_sounds_sounds_go_here_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__flixel_sounds_beep_ogg extends null { }
