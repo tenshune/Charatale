@@ -17,11 +17,6 @@ class PlayState extends FlxState
 
     override function create() 
     {
-		Utils.set_game_id(876216);
-		Utils.set_gamePrivKey('23695b0c39998bfcc7b705caccf8fc07');
-		Users.auth('Angelfoxiano', 'r54gxQ');
-        Users.fetch();
-        trace(Users.result);
 
         playerChar = new FlxSprite(FlxG.width/2, FlxG.height/2);
 		playerChar.frames = Paths.getSparrowAtlas("Chara");
