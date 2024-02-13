@@ -6,6 +6,11 @@ import flixel.util.FlxColor;
 import flixel.FlxSprite;
 import flixel.FlxState;
 
+import gameJoltAPI.Utils;
+import gameJoltAPI.Users;
+import gameJoltAPI.Trophies;
+import CoolUtils as CU;
+
 class GamejoltLogin extends FlxState
 {
 	var userNamebox:FlxSprite;
@@ -19,7 +24,7 @@ class GamejoltLogin extends FlxState
 	var username:FlxText;
 	var token:FlxText;
 
-	var selected:Int = 0;
+	var selected:Int = -1;
 
 	override function create()
 	{
@@ -61,13 +66,28 @@ class GamejoltLogin extends FlxState
 
 	override function update(elapsed:Float)
 	{
+		username.setFormat(Paths.font('determination'), 50, 0xFFFFFF, CENTER);
+		token.setFormat(Paths.font('determination'), 50, 0xFFFFFF, CENTER);
+
+		if (CU.overlapText(username) && selected != 0) {
+			username.setFormat(Paths.font('determination'), 50, 0xFDFF8F, CENTER);
+			if (FlxG.mouse.justPressed) {
+				selected = 0;
+			}
+		}else if (CU.overlapText(token) && selected != 1) {
+			token.setFormat(Paths.font('determination'), 50, 0xFDFF8F, CENTER);
+			if (FlxG.mouse.justPressed)
+			{
+				selected = 1;
+			}
+		}
+
 		if (selected == 0)
 		{
             if (username.text == 'Username') {
                 username.text = '';
             }
 			username.setFormat(Paths.font('determination'), 50, 0xFFEE06, CENTER);
-			// ;
 
             //All the keys
             if (FlxG.keys.justPressed.A) {
@@ -222,6 +242,170 @@ class GamejoltLogin extends FlxState
 			if (token.text == null || token.text == '')
 			{
 				token.text = 'Token';
+			}
+		}else if (selected == 1) {
+
+			if (token.text == 'Token') {
+				token.text = '';
+            }
+			token.setFormat(Paths.font('determination'), 50, 0xFFEE06, CENTER);
+
+			if (FlxG.keys.justPressed.A)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'A' : 'a';
+			}
+			if (FlxG.keys.justPressed.B)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'B' : 'b';
+			}
+			if (FlxG.keys.justPressed.C)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'C' : 'c';
+			}
+			if (FlxG.keys.justPressed.D)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'D' : 'd';
+			}
+			if (FlxG.keys.justPressed.E)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'E' : 'e';
+			}
+			if (FlxG.keys.justPressed.F)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'F' : 'f';
+			}
+			if (FlxG.keys.justPressed.G)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'G' : 'g';
+			}
+			if (FlxG.keys.justPressed.H)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'H' : 'h';
+			}
+			if (FlxG.keys.justPressed.I)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'I' : 'i';
+			}
+			if (FlxG.keys.justPressed.J)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'J' : 'j';
+			}
+			if (FlxG.keys.justPressed.K)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'K' : 'k';
+			}
+			if (FlxG.keys.justPressed.L)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'L' : 'l';
+			}
+			if (FlxG.keys.justPressed.M)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'M' : 'm';
+			}
+			if (FlxG.keys.justPressed.N)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'N' : 'n';
+			}
+			if (FlxG.keys.justPressed.O)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'O' : 'o';
+			}
+			if (FlxG.keys.justPressed.P)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'P' : 'p';
+			}
+			if (FlxG.keys.justPressed.Q)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'Q' : 'q';
+			}
+			if (FlxG.keys.justPressed.R)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'R' : 'r';
+			}
+			if (FlxG.keys.justPressed.S)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'S' : 's';
+			}
+			if (FlxG.keys.justPressed.T)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'T' : 't';
+			}
+			if (FlxG.keys.justPressed.U)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'U' : 'u';
+			}
+			if (FlxG.keys.justPressed.V)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'V' : 'v';
+			}
+			if (FlxG.keys.justPressed.W)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'W' : 'w';
+			}
+			if (FlxG.keys.justPressed.X)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'X' : 'x';
+			}
+			if (FlxG.keys.justPressed.Y)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'Y' : 'y';
+			}
+			if (FlxG.keys.justPressed.Z)
+			{
+				token.text += FlxG.keys.pressed.SHIFT ? 'Z' : 'z';
+			}
+			if (FlxG.keys.justPressed.ZERO)
+			{
+				token.text += '0';
+			}
+			if (FlxG.keys.justPressed.ONE)
+			{
+				token.text += '1';
+			}
+			if (FlxG.keys.justPressed.TWO)
+			{
+				token.text += '2';
+			}
+			if (FlxG.keys.justPressed.THREE)
+			{
+				token.text += '3';
+			}
+			if (FlxG.keys.justPressed.FOUR)
+			{
+				token.text += '4';
+			}
+			if (FlxG.keys.justPressed.FIVE)
+			{
+				token.text += '5';
+			}
+			if (FlxG.keys.justPressed.SIX)
+			{
+				token.text += '6';
+			}
+			if (FlxG.keys.justPressed.SEVEN)
+			{
+				token.text += '7';
+			}
+			if (FlxG.keys.justPressed.EIGHT)
+			{
+				token.text += '8';
+			}
+			if (FlxG.keys.justPressed.NINE)
+			{
+				token.text += '9';
+			}
+			if (FlxG.keys.justPressed.BACKSPACE)
+			{
+				token.text = token.text.substr(0, token.text.length - 1);
+			}
+			if (FlxG.keys.justPressed.SPACE)
+			{
+				token.text += " ";
+			}
+
+			if (username.text == null || username.text == '')
+			{
+				username.text = 'Username';
 			}
 		}
 		super.update(elapsed);
