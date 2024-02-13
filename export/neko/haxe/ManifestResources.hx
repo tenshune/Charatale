@@ -69,6 +69,7 @@ import sys.FileSystem;
 
 		#if (openfl && !flash && !display)
 		openfl.text.Font.registerFont (__ASSET__OPENFL__assets_fonts_determination_ttf);
+		openfl.text.Font.registerFont (__ASSET__OPENFL__assets_fonts_monsterfriendf_otf);
 		openfl.text.Font.registerFont (__ASSET__OPENFL__flixel_fonts_nokiafc22_ttf);
 		openfl.text.Font.registerFont (__ASSET__OPENFL__flixel_fonts_monsterrat_ttf);
 		
@@ -94,6 +95,7 @@ import sys.FileSystem;
 
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_data_data_goes_here_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_fonts_determination_ttf extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_fonts_monsterfriendf_otf extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_chara_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_chara_xml extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_charadust_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
@@ -144,11 +146,13 @@ import sys.FileSystem;
 @:keep @:image("C:/haxelib/flixel/5,6,0/assets/images/logo/default.png") @:noCompletion #if display private #end class __ASSET__flixel_images_logo_default_png extends lime.graphics.Image {}
 
 @:keep @:noCompletion #if display private #end class __ASSET__assets_fonts_determination_ttf extends lime.text.Font { public function new () { __fontPath = ManifestResources.rootPath + "assets/fonts/determination.ttf"; name = "Determination Mono Web Regular"; super (); }}
+@:keep @:noCompletion #if display private #end class __ASSET__assets_fonts_monsterfriendf_otf extends lime.text.Font { public function new () { __fontPath = ManifestResources.rootPath + "assets/fonts/MonsterFriendF.otf"; name = "Monster Friend Fore"; super (); }}
 
 
 #else
 
 @:keep @:expose('__ASSET__assets_fonts_determination_ttf') @:noCompletion #if display private #end class __ASSET__assets_fonts_determination_ttf extends lime.text.Font { public function new () { #if !html5 __fontPath = "assets/fonts/determination.ttf"; #else ascender = null; descender = null; height = null; numGlyphs = null; underlinePosition = null; underlineThickness = null; unitsPerEM = null; #end name = "Determination Mono Web Regular"; super (); }}
+@:keep @:expose('__ASSET__assets_fonts_monsterfriendf_otf') @:noCompletion #if display private #end class __ASSET__assets_fonts_monsterfriendf_otf extends lime.text.Font { public function new () { #if !html5 __fontPath = "assets/fonts/MonsterFriendF.otf"; #else ascender = null; descender = null; height = null; numGlyphs = null; underlinePosition = null; underlineThickness = null; unitsPerEM = null; #end name = "Monster Friend Fore"; super (); }}
 @:keep @:expose('__ASSET__flixel_fonts_nokiafc22_ttf') @:noCompletion #if display private #end class __ASSET__flixel_fonts_nokiafc22_ttf extends lime.text.Font { public function new () { #if !html5 __fontPath = "flixel/fonts/nokiafc22.ttf"; #else ascender = null; descender = null; height = null; numGlyphs = null; underlinePosition = null; underlineThickness = null; unitsPerEM = null; #end name = "Nokia Cellphone FC Small"; super (); }}
 @:keep @:expose('__ASSET__flixel_fonts_monsterrat_ttf') @:noCompletion #if display private #end class __ASSET__flixel_fonts_monsterrat_ttf extends lime.text.Font { public function new () { #if !html5 __fontPath = "flixel/fonts/monsterrat.ttf"; #else ascender = null; descender = null; height = null; numGlyphs = null; underlinePosition = null; underlineThickness = null; unitsPerEM = null; #end name = "Monsterrat"; super (); }}
 
@@ -159,11 +163,13 @@ import sys.FileSystem;
 
 #if html5
 @:keep @:expose('__ASSET__OPENFL__assets_fonts_determination_ttf') @:noCompletion #if display private #end class __ASSET__OPENFL__assets_fonts_determination_ttf extends openfl.text.Font { public function new () { name = "Determination Mono Web Regular"; super (); }}
+@:keep @:expose('__ASSET__OPENFL__assets_fonts_monsterfriendf_otf') @:noCompletion #if display private #end class __ASSET__OPENFL__assets_fonts_monsterfriendf_otf extends openfl.text.Font { public function new () { name = "Monster Friend Fore"; super (); }}
 @:keep @:expose('__ASSET__OPENFL__flixel_fonts_nokiafc22_ttf') @:noCompletion #if display private #end class __ASSET__OPENFL__flixel_fonts_nokiafc22_ttf extends openfl.text.Font { public function new () { __fromLimeFont (new __ASSET__flixel_fonts_nokiafc22_ttf ()); super (); }}
 @:keep @:expose('__ASSET__OPENFL__flixel_fonts_monsterrat_ttf') @:noCompletion #if display private #end class __ASSET__OPENFL__flixel_fonts_monsterrat_ttf extends openfl.text.Font { public function new () { __fromLimeFont (new __ASSET__flixel_fonts_monsterrat_ttf ()); super (); }}
 
 #else
 @:keep @:expose('__ASSET__OPENFL__assets_fonts_determination_ttf') @:noCompletion #if display private #end class __ASSET__OPENFL__assets_fonts_determination_ttf extends openfl.text.Font { public function new () { __fontPath = ManifestResources.rootPath + "assets/fonts/determination.ttf"; name = "Determination Mono Web Regular"; super (); }}
+@:keep @:expose('__ASSET__OPENFL__assets_fonts_monsterfriendf_otf') @:noCompletion #if display private #end class __ASSET__OPENFL__assets_fonts_monsterfriendf_otf extends openfl.text.Font { public function new () { __fontPath = ManifestResources.rootPath + "assets/fonts/MonsterFriendF.otf"; name = "Monster Friend Fore"; super (); }}
 @:keep @:expose('__ASSET__OPENFL__flixel_fonts_nokiafc22_ttf') @:noCompletion #if display private #end class __ASSET__OPENFL__flixel_fonts_nokiafc22_ttf extends openfl.text.Font { public function new () { __fromLimeFont (new __ASSET__flixel_fonts_nokiafc22_ttf ()); super (); }}
 @:keep @:expose('__ASSET__OPENFL__flixel_fonts_monsterrat_ttf') @:noCompletion #if display private #end class __ASSET__OPENFL__flixel_fonts_monsterrat_ttf extends openfl.text.Font { public function new () { __fromLimeFont (new __ASSET__flixel_fonts_monsterrat_ttf ()); super (); }}
 

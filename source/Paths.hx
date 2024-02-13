@@ -15,6 +15,11 @@ class Paths {
        return "assets/fonts/"+name+".ttf";
     }
 
+	static public function fontO(name:String)
+	{
+		return "assets/fonts/" + name + ".otf";
+	}
+
     static public function lang(lang:String, name:String) {
        return "assets/langs/"+lang+"/"+name+".txt";
     }
