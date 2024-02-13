@@ -10,6 +10,7 @@ import flixel.util.FlxColor;
 import flixel.text.FlxText;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import CoolUtils as Ut;
 
 class MainMenuState extends FlxState 
 {
@@ -105,17 +106,17 @@ class MainMenuState extends FlxState
         //FlxTween.tween(trophies, { x: (selected == 3 ? 80 : 30) }, 0.5, { ease: FlxEase.cubeOut });
 
         if (canSelect) {
-            if (CoolUtils.overlapText(newGame)) {
+            if (Ut.overlapText(newGame)) {
                 selected = 0;
 		    }
-		    else if (CoolUtils.overlapText(continueOp)) {
+			else if (Ut.overlapText(continueOp)) {
 			    selected = 1;
             }
-		    else if (CoolUtils.overlapText(optionsOp))
+			else if (Ut.overlapText(optionsOp))
 		    {
 		    	selected = 2;
 		    }
-		    else if (CoolUtils.overlapText(trophies))
+			else if (Ut.overlapText(trophies))
 		    {
 	    		selected = 3;
 	    	}

@@ -7,12 +7,22 @@ import flixel.FlxG;
 import flixel.FlxState;
 import flixel.input.gamepad.FlxGamepad;
 
+import gameJoltAPI.Utils;
+import gameJoltAPI.Users;
+import gameJoltAPI.Trophies;
+
 class PlayState extends FlxState
 {
     var playerChar:FlxSprite;
 
     override function create() 
     {
+		Utils.set_game_id(876216);
+		Utils.set_gamePrivKey('23695b0c39998bfcc7b705caccf8fc07');
+		Users.auth('Angelfoxiano', 'r54gxQ');
+        Users.fetch();
+        trace(Users.result);
+
         playerChar = new FlxSprite(FlxG.width/2, FlxG.height/2);
 		playerChar.frames = Paths.getSparrowAtlas("Chara");
         playerChar.animation.addByPrefix("Down", 'Down', 4);
