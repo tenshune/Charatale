@@ -21,8 +21,6 @@ class GamejoltLogin extends FlxState
 
 	var selected:Int = 0;
 
-	var keys:Array<String> = ['A'];
-
 	override function create()
 	{
 		userNamebox = new FlxSprite(0, 200);
