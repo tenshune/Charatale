@@ -17,7 +17,6 @@ class PlayState extends FlxState
 
     override function create() 
     {
-
         playerChar = new FlxSprite(FlxG.width/2, FlxG.height/2);
 		playerChar.frames = Paths.getSparrowAtlas("Chara");
         playerChar.animation.addByPrefix("Down", 'Down', 4);

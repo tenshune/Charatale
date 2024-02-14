@@ -1,5 +1,6 @@
 package;
 
+import openfl.Assets;
 import flixel.graphics.frames.FlxAtlasFrames;
 
 class Paths {
@@ -11,6 +12,11 @@ class Paths {
        return "assets/images/"+name+".png";
     }
 
+	static public function trophieImg(name:String)
+	{
+		return "assets/images/trophies/" + name + ".png";
+	}
+
     static public function font(name:String) {
        return "assets/fonts/"+name+".ttf";
     }
@@ -20,7 +26,11 @@ class Paths {
 		return "assets/fonts/" + name + ".otf";
 	}
 
-    static public function lang(lang:String, name:String) {
-       return "assets/langs/"+lang+"/"+name+".txt";
-    }
+   static public function lang(lang:String, name:String) {
+      return "assets/langs/"+lang+"/"+name+".txt";
+   }
+
+   static public function sound(soundName:String) {
+      return 'assets/sounds/'+soundName+'.wav';
+   }
 }

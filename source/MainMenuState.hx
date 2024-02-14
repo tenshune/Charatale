@@ -11,6 +11,7 @@ import flixel.text.FlxText;
 import flixel.FlxSprite;
 import flixel.FlxState;
 import CoolUtils as Ut;
+import GlobalVariables as Global;
 
 class MainMenuState extends FlxState 
 {
@@ -31,6 +32,8 @@ class MainMenuState extends FlxState
 	var timer:FlxTimer = new FlxTimer();
 
     var save:FlxSave;
+
+    var dark:FlxSprite;
 
     override function create() {
 		var secret:Bool = false;
@@ -90,6 +93,13 @@ class MainMenuState extends FlxState
         }
 
         trace(randomNumber);
+
+        super.create();
+
+		dark = new FlxSprite(0, 0);
+		dark.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		dark.alpha = Global.dark;
+		add(dark);
     }
 
     override function update(elapsed:Float) {
@@ -122,14 +132,26 @@ class MainMenuState extends FlxState
 	    	}
         }
 
-        if (selected == 0 && FlxG.mouse.justPressed) {}
-		else if (selected == 1 && FlxG.mouse.justPressed) {}
+        if (selected == 0 && FlxG.mouse.justPressed) {
+            goTo('playstate');
+        }
+		else if (selected == 1 && FlxG.mouse.justPressed) {
+            goTo('continue');
+        }
 		else if (selected == 2 && FlxG.mouse.justPressed) {
             goTo('options');
         }
-		else if (selected == 3 && FlxG.mouse.justPressed) {}
+		else if (selected == 3 && FlxG.mouse.justPressed) {
+            goTo('trophies');
+        }
 
         super.update(elapsed);
+
+        if (dark.alpha > 0) {
+            dark.alpha -= 0.05;
+        }else if (dark.alpha == 0) {
+            Global.dark = 0;
+        }
     }
 
     function onTimerComplete(timer:FlxTimer) {
@@ -154,12 +176,28 @@ class MainMenuState extends FlxState
 		FlxTween.tween(logo, {y: -200}, 1, {ease: FlxEase.cubeIn});
 		FlxTween.tween(soul, {x: 800}, 1.2, {ease: FlxEase.cubeIn});
 		FlxTween.tween(dustChara, {x: 800}, 1.2, {ease: FlxEase.cubeIn});
-        if (state == 'options') {
+        if (state == 'playstate') {
+            tim.start(1.5,switchP);
+        }else if (state == 'continue') {
+
+        }else if (state == 'options') {
             tim.start(1.5, switchO);
+        }else if (state == 'trophies') {
+            tim.start(1.5, switchT);
         }
     }
+
+	function switchP(tim:FlxTimer)
+	{
+		FlxG.switchState(new PlayState());
+	}
 
 	function switchO(tim:FlxTimer) {
         FlxG.switchState(new OptionsState());
     }
+
+	function switchT(tim:FlxTimer)
+	{
+		FlxG.switchState(new TrophiesState());
+	}
 }

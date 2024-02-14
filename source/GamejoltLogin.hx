@@ -186,6 +186,7 @@ class GamejoltLogin extends FlxState
 
 	private function Back() {
 	   FlxTween.tween(dark, {alpha: 1}, 1, {ease: FlxEase.cubeIn, onComplete: switchA});
+		Global.dark = 1;
 	}
 
 	private function switchA(t:FlxTween) {
