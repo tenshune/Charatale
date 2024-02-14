@@ -37,6 +37,12 @@ class GamejoltLogin extends FlxState
 	var authText:FlxText;
 	var authenticated:Bool;
 
+	var back:FlxButton;
+	var backText:FlxText;
+
+	var authA:FlxButton;
+	var authAText:FlxText;
+
 	var errorOnLogin:FlxText;
 	var successfully:FlxText;
 
@@ -45,12 +51,12 @@ class GamejoltLogin extends FlxState
 	var user:String;
 	var tok:String;
 
+	var dark:FlxSprite;
+
 	override function create()
 	{
 		Utils.set_game_id(Global.gameID);
 		Utils.set_gamePrivKey(Global.gamePrivateKey);
-
-		Users.auth(user, tok);
 
 		save = new FlxSave();
 		save.bind('charatale');
@@ -101,6 +107,32 @@ class GamejoltLogin extends FlxState
 		authText.screenCenter(X);
 		add(authText);
 
+		back = new FlxButton(0, 420, '', Back);
+		back.scale.x = 2;
+		back.scale.y = 2;
+		back.screenCenter(X);
+		back.x -= 160;
+		add(back);
+
+		backText = new FlxText(0, 420, 300, 'Back', 20);
+		backText.setFormat(Paths.font('determination'), 20, FlxColor.BLACK, CENTER);
+		backText.screenCenter(X);
+		backText.x -= 160;
+		add(backText);
+
+		authA = new FlxButton(0, 420, '', AuthAgain);
+		authA.scale.x = 2;
+		authA.scale.y = 2;
+		authA.screenCenter(X);
+		authA.x += 160;
+		add(authA);
+
+		authAText = new FlxText(0, 420, 300, 'Authenticate Again', 20);
+		authAText.setFormat(Paths.font('determination'), 15, FlxColor.BLACK, CENTER);
+		authAText.screenCenter(X);
+		authAText.x += 160;
+		add(authAText);
+
 		errorOnLogin = new FlxText(10, 10, 700, 'ERROR IN AUTHENTICATION: Incorrect username and/or token');
 		errorOnLogin.setFormat(Paths.font('determination'),20,FlxColor.RED, LEFT);
 		errorOnLogin.alpha = 0;
@@ -110,10 +142,26 @@ class GamejoltLogin extends FlxState
 		successfully.setFormat(Paths.font('determination'),20,FlxColor.LIME, LEFT);
 		successfully.alpha = 0;
 		add(successfully);
+
+		dark = new FlxSprite(0,0);
+		dark.makeGraphic(FlxG.width,FlxG.height,FlxColor.BLACK);
+		dark.alpha = 0;
+		add(dark);
+
+		if (save.data.username != null)
+		{
+			Success(true);
+		}
 	}
 
 	private function Auth():Void {
 	   Users.auth(username.text,token.text, Success);
+	}
+
+	private function AuthAgain() {
+		FlxTween.tween(successfully, {alpha: 0}, 0.2, {ease: FlxEase.cubeIn});
+		auth.active = true;
+		authenticated = false;
 	}
 
 	private function Success(s:Bool) {
@@ -133,6 +181,14 @@ class GamejoltLogin extends FlxState
 
 	private function errorDis(tim:FlxTimer) {
 		FlxTween.tween(errorOnLogin, {alpha: 0}, 1, {ease: FlxEase.cubeOut});
+	}
+
+	private function Back() {
+	   FlxTween.tween(dark, {alpha: 1}, 1, {ease: FlxEase.cubeIn, onComplete: switchA});
+	}
+
+	private function switchA(t:FlxTween) {
+	   FlxG.switchState(new MainMenuState());
 	}
 
 	override function update(elapsed:Float)
