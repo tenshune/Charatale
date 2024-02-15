@@ -1,5 +1,6 @@
 package;
 
+import openfl.Assets;
 import flixel.util.FlxSave;
 import flixel.util.FlxTimer;
 import flixel.tweens.FlxEase;
@@ -53,6 +54,8 @@ class GamejoltLogin extends FlxState
 
 	var dark:FlxSprite;
 
+	var lang:String;
+
 	override function create()
 	{
 		Utils.set_game_id(Global.gameID);
@@ -60,6 +63,8 @@ class GamejoltLogin extends FlxState
 
 		save = new FlxSave();
 		save.bind('charatale');
+
+		lang = save.data.lang;
 
 		userNamebox = new FlxSprite(0, 200);
 		userNamebox.makeGraphic(500, 80, FlxColor.WHITE);
@@ -86,7 +91,7 @@ class GamejoltLogin extends FlxState
 		jolt.setBorderStyle(OUTLINE, FlxColor.WHITE, 3);
 		add(jolt);
 
-		username = new FlxText(userNamebox.x - 250, userNamebox.y + 12, 1000, 'Username');
+		username = new FlxText(userNamebox.x - 250, userNamebox.y + 12, 1000, Assets.getText(Paths.lang(lang.toLowerCase(),'gamejolt/username')));
 		username.setFormat(Paths.font('determination'), 50, FlxColor.WHITE, CENTER);
 		add(username);
 
@@ -102,7 +107,7 @@ class GamejoltLogin extends FlxState
 		auth.screenCenter(X);
 		add(auth);
 
-		authText = new FlxText(0, 420, 300, 'Authenticate', 20);
+		authText = new FlxText(0, 420, 300, Assets.getText(Paths.lang(lang.toLowerCase(), 'gamejolt/auth')), 20);
 		authText.setFormat(Paths.font('determination'),20,FlxColor.BLACK,CENTER);
 		authText.screenCenter(X);
 		add(authText);
@@ -114,7 +119,7 @@ class GamejoltLogin extends FlxState
 		back.x -= 160;
 		add(back);
 
-		backText = new FlxText(0, 420, 300, 'Back', 20);
+		backText = new FlxText(0, 420, 300, Assets.getText(Paths.lang(lang.toLowerCase(), 'gamejolt/back')), 20);
 		backText.setFormat(Paths.font('determination'), 20, FlxColor.BLACK, CENTER);
 		backText.screenCenter(X);
 		backText.x -= 160;
@@ -127,25 +132,25 @@ class GamejoltLogin extends FlxState
 		authA.x += 160;
 		add(authA);
 
-		authAText = new FlxText(0, 420, 300, 'Authenticate Again', 20);
+		authAText = new FlxText(0, 420, 300, Assets.getText(Paths.lang(lang.toLowerCase(), 'gamejolt/authagain')), 20);
 		authAText.setFormat(Paths.font('determination'), 15, FlxColor.BLACK, CENTER);
 		authAText.screenCenter(X);
 		authAText.x += 160;
 		add(authAText);
 
-		errorOnLogin = new FlxText(10, 10, 700, 'ERROR IN AUTHENTICATION: Incorrect username and/or token');
+		errorOnLogin = new FlxText(10, 10, 700, Assets.getText(Paths.lang(lang.toLowerCase(), 'gamejolt/error')));
 		errorOnLogin.setFormat(Paths.font('determination'),20,FlxColor.RED, LEFT);
 		errorOnLogin.alpha = 0;
 		add(errorOnLogin);
 
-		successfully = new FlxText(10,10, 700, 'Successfully Authenticated in GameJolt');
+		successfully = new FlxText(10, 10, 700, Assets.getText(Paths.lang(lang.toLowerCase(), 'gamejolt/success')));
 		successfully.setFormat(Paths.font('determination'),20,FlxColor.LIME, LEFT);
 		successfully.alpha = 0;
 		add(successfully);
 
 		dark = new FlxSprite(0,0);
 		dark.makeGraphic(FlxG.width,FlxG.height,FlxColor.BLACK);
-		dark.alpha = 0;
+		dark.alpha = 1;
 		add(dark);
 
 		if (save.data.username != null)
@@ -190,11 +195,20 @@ class GamejoltLogin extends FlxState
 	}
 
 	private function switchA(t:FlxTween) {
-	   FlxG.switchState(new MainMenuState());
+	   FlxG.switchState(new OptionsState());
 	}
 
 	override function update(elapsed:Float)
 	{
+		if (dark.alpha > 0)
+		{
+			dark.alpha -= 0.05;
+		}
+		else if (dark.alpha == 0)
+		{
+			Global.dark = 0;
+		}
+
 		username.setFormat(Paths.font('determination'), 50, 0xFFFFFF, CENTER);
 		token.setFormat(Paths.font('determination'), 50, 0xFFFFFF, CENTER);
 
@@ -546,7 +560,7 @@ class GamejoltLogin extends FlxState
 
 				if (username.text == null || username.text == '')
 				{
-					username.text = 'Username';
+					username.text = Assets.getText(Paths.lang(lang.toLowerCase(), 'gamejolt/username'));
 				}
 			}
 		}

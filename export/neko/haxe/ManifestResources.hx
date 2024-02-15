@@ -100,6 +100,8 @@ import sys.FileSystem;
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_chara_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_chara_xml extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_dustchara_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_flags_mexico_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_flags_usa_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_images_go_here_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_logo_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_options_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
@@ -108,14 +110,40 @@ import sys.FileSystem;
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_trophies_begin_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_trophies_logged_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_trophies_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
-@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_en_continue_txt extends null { }
-@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_en_newgame_txt extends null { }
-@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_en_options_txt extends null { }
-@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_en_trophies_txt extends null { }
-@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_es_continue_txt extends null { }
-@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_es_newgame_txt extends null { }
-@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_es_options_txt extends null { }
-@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_es_trophies_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_continue_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_gamejolt_auth_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_gamejolt_authagain_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_gamejolt_back_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_gamejolt_error_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_gamejolt_success_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_gamejolt_username_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_newgame_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_options_lang_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_options_langs_eng_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_options_langs_esp_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_options_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_trophies_begin_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_trophies_logged_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_trophies_secret_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_trophies_welcome_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_trophies_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_continue_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_gamejolt_auth_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_gamejolt_authagain_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_gamejolt_back_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_gamejolt_error_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_gamejolt_success_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_gamejolt_username_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_newgame_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_options_lang_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_options_langs_eng_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_options_langs_esp_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_options_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_trophies_begin_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_trophies_logged_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_trophies_secret_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_trophies_welcome_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_trophies_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_music_music_goes_here_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_sounds_mus_alphysfix_ogg extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_sounds_mus_badnote1_wav extends null { }

@@ -1,5 +1,7 @@
 package;
 
+import openfl.Assets;
+import flixel.util.FlxSave;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.text.FlxText;
@@ -23,18 +25,27 @@ class TrophiesState extends FlxState {
     var textBox:FlxSprite;
     var text:FlxText;
 
-	var texts:Array<String> = ["Welcome to the trophies section", 'You logged to your GameJolt', 'You began playing the game', '* Asriel, why did you carry me to here, now you\'re dead because... of me...'];
-
-	private var textToAnimate:String = "Welcome to the trophies section";
+	private var textToAnimate:String = '';
     private var secret:Bool = false;
 
     private var selected = 0;
 
     var dark:FlxSprite;
 
+	var lang:String = "";
+
+	var save:FlxSave;
+
     override function create() {
         Utils.game_id = Global.gameID;
         Utils.gamePrivKey = Global.gamePrivateKey;
+
+		save = new FlxSave();
+		save.bind("charatale");
+
+		lang = save.data.lang;
+
+		textToAnimate = Assets.getText(Paths.lang(lang.toLowerCase(), 'trophies/welcome'));
 
         var title:FlxSprite = new FlxSprite(10,10).loadGraphic(Paths.image('trophies'));
         add(title);
@@ -81,6 +92,14 @@ class TrophiesState extends FlxState {
 
 	override public function update(elapsed:Float):Void
 	{
+
+		var texts:Array<String> = [
+			Assets.getText(Paths.lang(lang.toLowerCase(),'trophies/welcome')),
+			Assets.getText(Paths.lang(lang.toLowerCase(),'trophies/logged')),
+			Assets.getText(Paths.lang(lang.toLowerCase(),'trophies/begin')),
+			Assets.getText(Paths.lang(lang.toLowerCase(),'trophies/secret'))
+		];
+
 		if (dark.alpha > 0)
 		{
 			dark.alpha -= 0.05;
@@ -93,14 +112,14 @@ class TrophiesState extends FlxState {
 
         CU.textAnimation(text,textToAnimate,elapsed);
 
-		if (FlxG.keys.pressed.ONE && FlxG.keys.pressed.FIVE && FlxG.keys.pressed.NUMPADZERO && FlxG.keys.pressed.NUMPADNINE && !secret) {
+		if (FlxG.keys.pressed.ONE && FlxG.keys.pressed.FIVE && FlxG.keys.pressed.NUMPADNINE && !secret) {
 			CU.animInit();
 			text.text = "";
             textToAnimate = texts[3];
             selected = 3;
             secret = true;
 		}
-		else if (!FlxG.keys.pressed.A && !FlxG.keys.pressed.S && !FlxG.keys.pressed.NUMPADZERO && !FlxG.keys.pressed.NUMPADNINE && secret) {
+		else if (!FlxG.keys.pressed.A && !FlxG.keys.pressed.S && !FlxG.keys.pressed.NUMPADNINE && secret) {
 			CU.animInit();
 			text.text = "";
 			textToAnimate = texts[0];

@@ -35,11 +35,13 @@ class MainMenuState extends FlxState
 
     var dark:FlxSprite;
 
+    var lang:String = "";
+
     override function create() {
 		var secret:Bool = false;
 		var randomNumber:Int = Std.random(2000) + 1;
 
-		if (randomNumber == 1509)
+		if (randomNumber == 1509 || randomNumber == 915)
 		{
 			secret = true;
 		}
@@ -48,30 +50,30 @@ class MainMenuState extends FlxState
 		save.bind("charatale");
 
         if (save.data.lang == null) {
-            save.data.lang = 'en';
+            save.data.lang = 'English';
             save.flush();
         }
 
-        save.data.lang = 'en';
+        lang = save.data.lang;
 
         logo = new FlxSprite(-70,10).loadGraphic(Paths.image('logo'));
         logo.scale.x = 0.75;
 		logo.scale.y = 0.75;
         add(logo);
 
-		newGame = new FlxText(30, 110, 460, Assets.getText(Paths.lang(save.data.lang, "newgame")));
+		newGame = new FlxText(30, 110, 460, Assets.getText(Paths.lang(lang.toLowerCase(), "newgame")));
 		newGame.setFormat(Paths.font('determination'), 80, FlxColor.WHITE, FlxTextAlign.LEFT);
 		add(newGame);
 
-		continueOp = new FlxText(30, 110 + 85, 380, Assets.getText(Paths.lang(save.data.lang, "continue")));
+		continueOp = new FlxText(30, 110 + 85, 380, Assets.getText(Paths.lang(lang.toLowerCase(), "continue")));
 		continueOp.setFormat(Paths.font('determination'), 80, FlxColor.WHITE, FlxTextAlign.LEFT);
 		add(continueOp);
 
-		optionsOp = new FlxText(30, 110 + 85 * 2, 325, Assets.getText(Paths.lang(save.data.lang, "options")));
+		optionsOp = new FlxText(30, 110 + 85 * 2, 325, Assets.getText(Paths.lang(lang.toLowerCase(), "options")));
 		optionsOp.setFormat(Paths.font('determination'), 80, FlxColor.WHITE, FlxTextAlign.LEFT);
 		add(optionsOp);
 
-		trophies = new FlxText(30, 110 + 85 * 3, 325, Assets.getText(Paths.lang(save.data.lang, "trophies")));
+		trophies = new FlxText(30, 110 + 85 * 3, 325, Assets.getText(Paths.lang(lang.toLowerCase(), "trophies")));
 		trophies.setFormat(Paths.font('determination'), 80, FlxColor.WHITE, FlxTextAlign.LEFT);
 		add(trophies);
 
