@@ -42,7 +42,7 @@ class OptionsState extends FlxState
 			langSel = 1;
 		}
 
-		options = new FlxSprite(-50, 10).loadGraphic(Paths.image('options'));
+		options = new FlxSprite(-50, 10);
 		options.scale.x = 0.75;
 		options.scale.y = 0.75;
 		add(options);
@@ -150,6 +150,8 @@ class OptionsState extends FlxState
 		}
 		langOp.text = langS[langSel];
 		langT.text = Assets.getText(Paths.lang(lan.toLowerCase(), 'options/lang'));
+
+		options.loadGraphic(Paths.langImg(lan.toLowerCase(),'img/options'));
 
 		super.update(elapsed);
 

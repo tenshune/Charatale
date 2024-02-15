@@ -19,6 +19,8 @@ import CoolUtils as CU;
 
 class TrophiesState extends FlxState {
 
+	var title:FlxSprite;
+
     var troph1:FlxSprite;
 	var troph2:FlxSprite;
 
@@ -47,7 +49,7 @@ class TrophiesState extends FlxState {
 
 		textToAnimate = Assets.getText(Paths.lang(lang.toLowerCase(), 'trophies/welcome'));
 
-        var title:FlxSprite = new FlxSprite(10,10).loadGraphic(Paths.image('trophies'));
+        title = new FlxSprite(10,10);
         add(title);
 
         troph1 = new FlxSprite(40,110).loadGraphic(Paths.trophieImg('logged'));
@@ -99,6 +101,8 @@ class TrophiesState extends FlxState {
 			Assets.getText(Paths.lang(lang.toLowerCase(),'trophies/begin')),
 			Assets.getText(Paths.lang(lang.toLowerCase(),'trophies/secret'))
 		];
+
+		title.loadGraphic(Paths.langImg(lang.toLowerCase(), 'img/trophies'));
 
 		if (dark.alpha > 0)
 		{

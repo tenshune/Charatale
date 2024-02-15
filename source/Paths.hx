@@ -30,6 +30,11 @@ class Paths {
       return "assets/langs/"+lang+"/"+name+".txt";
    }
 
+	static public function langImg(lang:String, name:String)
+	{
+		return "assets/langs/" + lang + "/" + name + ".png";
+	}
+
    static public function sound(soundName:String) {
       return 'assets/sounds/'+soundName+'.wav';
    }
