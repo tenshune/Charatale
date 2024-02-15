@@ -121,7 +121,7 @@ class MainMenuState extends FlxState
             if (Ut.overlapText(newGame)) {
                 selected = 0;
 		    }
-			else if (Ut.overlapText(continueOp)) {
+			else if (Ut.overlapText(continueOp) && save.data.save != null) {
 			    selected = 1;
             }
 			else if (Ut.overlapText(optionsOp))
@@ -137,7 +137,7 @@ class MainMenuState extends FlxState
         if (selected == 0 && FlxG.mouse.justPressed) {
             goTo('playstate');
         }
-		else if (selected == 1 && FlxG.mouse.justPressed) {
+		else if (selected == 1 && FlxG.mouse.justPressed && save.data.save != null) {
             goTo('continue');
         }
 		else if (selected == 2 && FlxG.mouse.justPressed) {
@@ -148,6 +148,17 @@ class MainMenuState extends FlxState
         }
 
         super.update(elapsed);
+
+        if (save.data.save == null) {
+            if (canSelect) {
+				continueOp.alpha = 0.5;
+            }
+        }else{
+			if (canSelect)
+			{
+				continueOp.alpha = 1;
+			}
+        }
 
         if (dark.alpha > 0) {
             dark.alpha -= 0.05;

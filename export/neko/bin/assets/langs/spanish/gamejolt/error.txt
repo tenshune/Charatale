@@ -1,0 +1,1 @@
+ERROR EN LA AUTENTICACÓN: Nombre y/o token incorrectos
