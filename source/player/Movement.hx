@@ -6,76 +6,81 @@ import flixel.input.gamepad.FlxGamepad;
 
 class Movement {
 
-	static public function keyboardMove(playerChar:FlxSprite)
+	static public function keyboardMove(playerChar:FlxSprite, ?anims:Bool=false, ?move:Bool = true)
 	{
 		var speedMultiplier:Float = 3;
 
 		var isMoving:Bool = false;
 
-		if (FlxG.keys.pressed.A || FlxG.keys.pressed.LEFT)
-		{
-			playerChar.x -= speedMultiplier;
-			isMoving = true;
-		}
-		if (FlxG.keys.pressed.D || FlxG.keys.pressed.RIGHT)
-		{
-			playerChar.x += speedMultiplier;
-			isMoving = true;
-		}
-		if (FlxG.keys.pressed.W || FlxG.keys.pressed.UP)
-		{
-			playerChar.y -= speedMultiplier;
-			isMoving = true;
-		}
-		if (FlxG.keys.pressed.S || FlxG.keys.pressed.DOWN)
-		{
-			playerChar.y += speedMultiplier;
-			isMoving = true;
-		}
-		if (isMoving)
-		{
+		if (move) {
 			if (FlxG.keys.pressed.A || FlxG.keys.pressed.LEFT)
 			{
-				if (FlxG.keys.pressed.W)
-				{
-					playerChar.animation.play('UpLeft');
-				}
-				else if (FlxG.keys.pressed.S)
-				{
-					playerChar.animation.play('DownLeft');
-				}
-				else
-				{
-					playerChar.animation.play('Left');
-				}
+				playerChar.x -= speedMultiplier;
+				isMoving = true;
 			}
-			else if (FlxG.keys.pressed.D || FlxG.keys.pressed.RIGHT)
+			if (FlxG.keys.pressed.D || FlxG.keys.pressed.RIGHT)
 			{
-				if (FlxG.keys.pressed.W)
-				{
-					playerChar.animation.play('UpRight');
-				}
-				else if (FlxG.keys.pressed.S)
-				{
-					playerChar.animation.play('DownRight');
-				}
-				else
-				{
-					playerChar.animation.play('Right');
-				}
+				playerChar.x += speedMultiplier;
+				isMoving = true;
 			}
-			else if (FlxG.keys.pressed.W || FlxG.keys.pressed.UP)
+			if (FlxG.keys.pressed.W || FlxG.keys.pressed.UP)
 			{
-				playerChar.animation.play('Up');
+				playerChar.y -= speedMultiplier;
+				isMoving = true;
 			}
-			else if (FlxG.keys.pressed.S || FlxG.keys.pressed.DOWN)
+			if (FlxG.keys.pressed.S || FlxG.keys.pressed.DOWN)
 			{
-				playerChar.animation.play('Down');
+				playerChar.y += speedMultiplier;
+				isMoving = true;
 			}
 		}
-		else
-		{
-			playerChar.animation.frameIndex = 0;
+		if (anims) {
+			if (isMoving)
+			{
+				if (FlxG.keys.pressed.A || FlxG.keys.pressed.LEFT)
+				{
+					if (FlxG.keys.pressed.W)
+					{
+						playerChar.animation.play('UpLeft');
+					}
+					else if (FlxG.keys.pressed.S)
+					{
+						playerChar.animation.play('DownLeft');
+					}
+					else
+					{
+						playerChar.animation.play('Left');
+					}
+				}
+				else if (FlxG.keys.pressed.D || FlxG.keys.pressed.RIGHT)
+				{
+					if (FlxG.keys.pressed.W)
+					{
+						playerChar.animation.play('UpRight');
+					}
+					else if (FlxG.keys.pressed.S)
+					{
+						playerChar.animation.play('DownRight');
+					}
+					else
+					{
+						playerChar.animation.play('Right');
+					}
+				}
+				else if (FlxG.keys.pressed.W || FlxG.keys.pressed.UP)
+				{
+					playerChar.animation.play('Up');
+				}
+				else if (FlxG.keys.pressed.S || FlxG.keys.pressed.DOWN)
+				{
+					playerChar.animation.play('Down');
+				}
+			}
+			else
+			{
+				playerChar.animation.stop();
+				playerChar.animation.frameIndex = 0;
+			}
 		}
 	}
 
