@@ -202,7 +202,7 @@ class MainMenuState extends FlxState
 
 	function switchP(tim:FlxTimer)
 	{
-		FlxG.switchState(new PlayState());
+		FlxG.switchState(new ChooseName());
 	}
 
 	function switchO(tim:FlxTimer) {
