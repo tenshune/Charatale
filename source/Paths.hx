@@ -32,7 +32,7 @@ class Paths {
 	}
 
    static public function lang(lang:String, name:String) {
-      return "assets/langs/"+lang+"/"+name+".txt";
+      return "assets/langs/"+lang.toLowerCase()+"/"+name+".txt";
    }
 
 	static public function langImg(lang:String, name:String)

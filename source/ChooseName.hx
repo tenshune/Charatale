@@ -1,5 +1,7 @@
 package;
 
+import openfl.Assets;
+import flixel.util.FlxSave;
 import flixel.FlxCamera;
 import flixel.util.FlxAxes;
 import flixel.tweens.FlxEase;
@@ -51,9 +53,17 @@ class ChooseName extends FlxState
 	var yes:FlxText;
 	var back:FlxText;
 
+	var save:FlxSave;
+
+	var lang:String;
+
 	override function create()
 	{
-		nameit = new FlxText(0, 50, FlxG.width, 'Name the fallen human.', 40);
+		save = new FlxSave();
+		save.bind('charatale');
+		lang = save.data.lang;
+
+		nameit = new FlxText(0, 50, FlxG.width, Assets.getText(Paths.lang(lang,'choose/namethem')), 40);
 		nameit.setFormat(Paths.font('determination'), 30, FlxColor.WHITE, CENTER);
 		nameit.screenCenter(XY);
 		nameit.y = 50;
@@ -102,34 +112,29 @@ class ChooseName extends FlxState
 		name.y -= 125;
 		add(name);
 
-		quit = new FlxText(70,FlxG.height-60,300,'Quit');
+		quit = new FlxText(70, FlxG.height - 60, 300, Assets.getText(Paths.lang(lang, 'choose/quit')));
 		quit.setFormat(Paths.font('determination'),40,FlxColor.WHITE,LEFT);
 		add(quit);
 
-		backspace = new FlxText(0, FlxG.height - 60,300,'Backspace');
+		backspace = new FlxText(0, FlxG.height - 60, 300, Assets.getText(Paths.lang(lang, 'choose/backspace')));
 		backspace.setFormat(Paths.font('determination'),40,FlxColor.WHITE,CENTER);
 		backspace.screenCenter(X);
 		add(backspace);
 
-		done = new FlxText(265,FlxG.height - 60,300,'Done');
+		done = new FlxText(265, FlxG.height - 60, 300, Assets.getText(Paths.lang(lang, 'choose/done')));
 		done.setFormat(Paths.font('determination'),40,FlxColor.WHITE,RIGHT);
 		add(done);
 
 		super.create();
 
-		dark = new FlxSprite(0, 0);
-		dark.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-		dark.alpha = 1;
-		add(dark);
-
-		warning = new FlxText(0, 50, FlxG.width, 'WARNING: This name will activate the hard mode.\nNo recommended for new players of Undertale/Deltarune.', 40);
+		warning = new FlxText(0, 50, FlxG.width, Assets.getText(Paths.lang(lang, 'choose/warning')), 40);
 		warning.setFormat(Paths.font('determination'), 30, FlxColor.WHITE, CENTER);
 		warning.screenCenter(XY);
 		warning.y = 30;
 		warning.alpha = 0;
 		add(warning);
 
-		sure = new FlxText(0, 50, FlxG.width, 'This is the name you choose?', 40);
+		sure = new FlxText(0, 50, FlxG.width, Assets.getText(Paths.lang(lang, 'choose/choose')), 40);
 		sure.setFormat(Paths.font('determination'), 45, FlxColor.WHITE, CENTER);
 		sure.screenCenter(XY);
 		sure.y = 30;
@@ -143,20 +148,25 @@ class ChooseName extends FlxState
 		secret.alpha = 0;
 		add(secret);
 
-		no = new FlxText(30, FlxG.height-60, FlxG.width, 'No');
+		no = new FlxText(30, FlxG.height-60, FlxG.width,Assets.getText(Paths.lang(lang,'choose/no')));
 		no.setFormat(Paths.font('determination'), 40, FlxColor.WHITE, LEFT);
 		no.alpha = 0;
 		add(no);
 
-		yes = new FlxText(-30, FlxG.height - 60, FlxG.width, 'Yes');
+		yes = new FlxText(-30, FlxG.height - 60, FlxG.width, Assets.getText(Paths.lang(lang, 'choose/yes')));
 		yes.setFormat(Paths.font('determination'), 40, FlxColor.WHITE, RIGHT);
 		yes.alpha = 0;
 		add(yes);
 
-		back = new FlxText(30, FlxG.height - 60, FlxG.width, 'Back');
+		back = new FlxText(30, FlxG.height - 60, FlxG.width, Assets.getText(Paths.lang(lang, 'choose/back')));
 		back.setFormat(Paths.font('determination'), 40, FlxColor.WHITE, LEFT);
 		back.alpha = 0;
 		add(back);
+
+		dark = new FlxSprite(0, 0);
+		dark.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		dark.alpha = 1;
+		add(dark);
 	}
 
 	var shakeIntensity:Float= 0.002;
@@ -194,7 +204,7 @@ class ChooseName extends FlxState
 		}
 
 		quit.setFormat(Paths.font('determination'),40, selected == 52 ? FlxColor.YELLOW : FlxColor.WHITE, LEFT);
-		if (selected == 52 && FlxG.keys.justPressed.ENTER) {Back();}
+		if (selected == 52 && FlxG.keys.justPressed.ENTER) {Back();nameDone = true;}
 		backspace.setFormat(Paths.font('determination'),40, selected == 53 ? FlxColor.YELLOW : FlxColor.WHITE, CENTER);
 		if (selected == 53 && FlxG.keys.justPressed.ENTER) {nameStr = nameStr.substring(0, nameStr.length - 1);}
 		done.setFormat(Paths.font('determination'),40, selected == 54 ? FlxColor.YELLOW : FlxColor.WHITE, RIGHT);
@@ -381,104 +391,129 @@ class ChooseName extends FlxState
 			shakeIntensity = 0.006;
 		}
 		else if (nameStr.toLowerCase() == 'toriel') {
-			secret.text = 'You need your own name my child.';
+			secret.text = Assets.getText(Paths.lang(lang, 'choose/secrets/toriel'));
 			canSelect = false;
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
 			shakeIntensity = 0.003;
 		}
 		else if (nameStr.toLowerCase() == 'frisk')
 		{
-			secret.text = 'The next fallen child.';
+			secret.text = Assets.getText(Paths.lang(lang, 'choose/secrets/frisk'));
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
 			shakeIntensity = 0.003;
 		}
 		else if (nameStr.toLowerCase() == 'sans')
 		{
-			secret.text = 'nope kiddo.';
+			secret.text = Assets.getText(Paths.lang(lang, 'choose/secrets/sans'));
 			canSelect = false;
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
 			shakeIntensity = 0.003;
 		}
 		else if (nameStr.toLowerCase() == 'papyrus')
 		{
-			secret.text = 'This is ONLY FOR ME and no ONE ELSE.';
+			secret.text = Assets.getText(Paths.lang(lang, 'choose/secrets/papyrus'));
 			canSelect = false;
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
 			shakeIntensity = 0.003;
 		}
 		else if (nameStr.toLowerCase() == 'daddy')
 		{
-			secret.text = 'Daddy issues.';
+			secret.text = Assets.getText(Paths.lang(lang, 'choose/secrets/daddy'));
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
 			shakeIntensity = 0.003;
 		}
 		else if (nameStr.toLowerCase() == 'mommy')
 		{
-			secret.text = 'Mommy issues';
+			secret.text = Assets.getText(Paths.lang(lang, 'choose/secrets/mommy'));
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
 			shakeIntensity = 0.003;
 		}
 		else if (nameStr.toLowerCase() == 'skill')
 		{
-			secret.text = 'Skill issues. (This will activate easy mode LMAO)';
+			secret.text = Assets.getText(Paths.lang(lang, 'choose/secrets/skill'));
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
 			shakeIntensity = 0.003;
 		}
 		else if (nameStr.toLowerCase() == 'lukas' || nameStr.toLowerCase() == 'alan' || nameStr.toLowerCase() == 'logan' || nameStr.toLowerCase() == 'alex')
 		{
-			secret.text = 'Buddy wat\'cha doin here.';
+			secret.text = Assets.getText(Paths.lang(lang, 'choose/secrets/friends'));
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
 			shakeIntensity = 0.003;
 		}
 		else if (nameStr.toLowerCase() == 'tracer')
 		{
-			secret.text = 'I\'m already Tracer.';
+			secret.text = Assets.getText(Paths.lang(lang, 'choose/secrets/tracer'));
 			canSelect = false;
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
 			shakeIntensity = 0.003;
 		}
 		else if (nameStr.toLowerCase() == 'toby' || nameStr.toLowerCase() == 'tobyfox')
 		{
-			secret.text = 'AMEN.';
+			secret.text = Assets.getText(Paths.lang(lang, 'choose/secrets/the creator'));
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
 			shakeIntensity = 0.003;
 		}
 		else if (nameStr.toLowerCase() == 'batman')
 		{
-			secret.text = 'I\'m Batman.';
+			secret.text = Assets.getText(Paths.lang(lang, 'choose/secrets/batman'));
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
 			shakeIntensity = 0.003;
 		}
-		else if (nameStr.toLowerCase() == 'alphies')
+		else if (nameStr.toLowerCase() == 'alphys')
 		{
-			secret.text = 'Yhehe... i don\'t think so...';
+			secret.text = Assets.getText(Paths.lang(lang, 'choose/secrets/alphys'));
 			canSelect = false;
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
 			shakeIntensity = 0.003;
 		}
 		else if (nameStr.toLowerCase() == 'undyne')
 		{
-			secret.text = 'NGAHH NO.';
+			secret.text = Assets.getText(Paths.lang(lang, 'choose/secrets/undyne'));
 			canSelect = false;
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
 			shakeIntensity = 0.003;
 		}
 		else if (nameStr.toLowerCase() == 'dummie' || nameStr.toLowerCase() == 'dummy')
 		{
-			secret.text = 'You will not make fun of me using this.';
+			secret.text = Assets.getText(Paths.lang(lang, 'choose/secrets/dumm'));
 			canSelect = false;
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
 			shakeIntensity = 0.003;
 		}
 		else if (nameStr.toLowerCase() == 'naps')
 		{
-			secret.text = 'Nice nickname buddy   - Napstablook.';
+			secret.text = Assets.getText(Paths.lang(lang, 'choose/secrets/naps'));
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
 			shakeIntensity = 0.003;
 		}
 		else if (nameStr.toLowerCase() == 'spiderman' || nameStr.toLowerCase() == 'peter')
 		{
-			secret.text = 'Feeling like a friendly neighbour huh.';
+			secret.text = Assets.getText(Paths.lang(lang, 'choose/secrets/spider'));
+			FlxTween.tween(secret, {alpha: 1}, 0.7);
+			shakeIntensity = 0.003;
+		}
+		else if (nameStr.toLowerCase() == 'angelfoxy' || nameStr.toLowerCase() == 'angelfoxiano')
+		{
+			secret.text = Assets.getText(Paths.lang(lang, 'choose/secrets/angel'));
+			FlxTween.tween(secret, {alpha: 1}, 0.7);
+			canSelect = false;
+			shakeIntensity = 0.003;
+		}
+		else if (nameStr.toLowerCase() == 'tem' || nameStr.toLowerCase() == 'temmie')
+		{
+			secret.text = 'HoI!!11!!!';
+			FlxTween.tween(secret, {alpha: 1}, 0.7);
+			shakeIntensity = 0.003;
+		}
+		else if (nameStr.toLowerCase() == 'xkiphu' && lang.toLowerCase() == 'spanish')
+		{
+			secret.text = 'Que esa MONDA Sapa hijuepu-';
+			FlxTween.tween(secret, {alpha: 1}, 0.7);
+			shakeIntensity = 0.003;
+		}
+		else if (nameStr.toLowerCase() == 'markiplier' && lang.toLowerCase() == 'english')
+		{
+			secret.text = 'Hello my name is Markiplier.';
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
 			shakeIntensity = 0.003;
 		}else{
