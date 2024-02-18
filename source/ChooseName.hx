@@ -434,9 +434,21 @@ class ChooseName extends FlxState
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
 			shakeIntensity = 0.003;
 		}
-		else if (nameStr.toLowerCase() == 'lukas' || nameStr.toLowerCase() == 'alan' || nameStr.toLowerCase() == 'logan' || nameStr.toLowerCase() == 'alex')
+		else if (nameStr.toLowerCase() == 'alan' || nameStr.toLowerCase() == 'alex')
 		{
 			secret.text = Assets.getText(Paths.lang(lang, 'choose/secrets/friends'));
+			FlxTween.tween(secret, {alpha: 1}, 0.7);
+			shakeIntensity = 0.003;
+		}
+		else if (nameStr.toLowerCase() == 'lukas')
+		{
+			secret.text = Assets.getText(Paths.lang(lang, 'choose/secrets/lukas'));
+			FlxTween.tween(secret, {alpha: 1}, 0.7);
+			shakeIntensity = 0.003;
+		}
+		else if (nameStr.toLowerCase() == 'logan')
+		{
+			secret.text = Assets.getText(Paths.lang(lang, 'choose/secrets/logan'));
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
 			shakeIntensity = 0.003;
 		}
@@ -492,7 +504,7 @@ class ChooseName extends FlxState
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
 			shakeIntensity = 0.003;
 		}
-		else if (nameStr.toLowerCase() == 'angelfoxy' || nameStr.toLowerCase() == 'angelfoxiano')
+		else if (nameStr.toLowerCase() == 'angelfoxiano')
 		{
 			secret.text = Assets.getText(Paths.lang(lang, 'choose/secrets/angel'));
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
