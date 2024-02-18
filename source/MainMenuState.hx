@@ -1,5 +1,6 @@
 package;
 
+import openfl.events.NetStatusEvent;
 import openfl.Assets;
 import flixel.util.FlxSave;
 import flixel.util.FlxTimer;
@@ -179,6 +180,8 @@ class MainMenuState extends FlxState
 		timer.start(1, onTimerComplete);
     }
 
+    var stateTo:String;
+
     function goTo(state:String) {
 		var tim:FlxTimer = new FlxTimer();
 		canSelect = false;
@@ -192,7 +195,10 @@ class MainMenuState extends FlxState
         if (state == 'playstate') {
             tim.start(1.5,switchP);
         }else if (state == 'continue') {
-
+            if (save.data.save == 0) {
+                stateTo = 'Zone1';
+                tim.start(5, switchG);
+            }
         }else if (state == 'options') {
             tim.start(1.5, switchO);
         }else if (state == 'trophies') {
@@ -212,5 +218,12 @@ class MainMenuState extends FlxState
 	function switchT(tim:FlxTimer)
 	{
 		FlxG.switchState(new TrophiesState());
+	}
+
+	function switchG(tim:FlxTimer)
+	{
+        if (stateTo == 'Zone1') {
+			FlxG.switchState(new mapStates.theRuins.Zone1());
+        }
 	}
 }

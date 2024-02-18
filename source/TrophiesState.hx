@@ -132,20 +132,29 @@ class TrophiesState extends FlxState {
         }
 
         var trophs:Array<FlxSprite> = [troph1, troph2];
+		var trophsSave:Array<Bool> = [save.data.logged, save.data.begin];
         var i:Int = 0;
         do {
-            if (CU.overlapSprite(trophs[i])) {
-                trophs[i].alpha = 0.8;
-                if (FlxG.mouse.justPressed) {
-					CU.animInit();
-					text.text = "";
-					textToAnimate = texts[i+1];
-					selected = i+1;
-					secret = false;
-                }
-            }else{
-                trophs[i].alpha = 1;
-            }
+			if (trophsSave[i] == true) {
+				if (CU.overlapSprite(trophs[i]))
+				{
+					trophs[i].alpha = 0.8;
+					if (FlxG.mouse.justPressed)
+					{
+						CU.animInit();
+						text.text = "";
+						textToAnimate = texts[i + 1];
+						selected = i + 1;
+						secret = false;
+					}
+				}
+				else
+				{
+					trophs[i].alpha = 1;
+				}
+			}else{
+				trophs[i].color = 0x555555;
+			}
             i++;
         }while (i < trophs.length);
 

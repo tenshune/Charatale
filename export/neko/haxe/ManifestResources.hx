@@ -99,6 +99,7 @@ import sys.FileSystem;
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_fonts_monsterfriendf_otf extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_chara_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_chara_xml extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_chartextbox_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_dustchara_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_flags_mexico_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_flags_usa_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
@@ -133,6 +134,9 @@ import sys.FileSystem;
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_maps_the_ruins_zone_8_a_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_maps_the_ruins_zone_8_b_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_maps_the_ruins_zone_9_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_portraits_chara_neutral_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_portraits_chara_tired_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_portraits_chara_worried_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_soul_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_textbox_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_trophies_begin_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
@@ -151,6 +155,8 @@ import sys.FileSystem;
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_choose_secrets_dumm_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_choose_secrets_friends_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_choose_secrets_frisk_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_choose_secrets_logan_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_choose_secrets_lukas_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_choose_secrets_mommy_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_choose_secrets_naps_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_choose_secrets_papyrus_txt extends null { }

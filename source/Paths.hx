@@ -12,6 +12,11 @@ class Paths {
        return "assets/images/"+name+".png";
     }
 
+	static public function portImage(name:String, char:String)
+	{
+		return "assets/images/portraits/" + char + "/" + name + ".png";
+	}
+
 	static public function mapImg(name:String, map:String)
 	{
 		return "assets/images/maps/" + map + "/" + name + ".png";

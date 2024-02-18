@@ -341,6 +341,10 @@ class ChooseName extends FlxState
 		if (nameDone && nameit.alpha == 0 && sel == 0 && FlxG.keys.justPressed.ENTER) {
 			notDone();
 		}
+		if (nameDone && nameit.alpha == 0 && sel == 1 && FlxG.keys.justPressed.ENTER)
+		{
+			conGame();
+		}
 
 		if (canSelect) {
 			if (nameDone && FlxG.keys.justPressed.RIGHT)
@@ -369,6 +373,20 @@ class ChooseName extends FlxState
 	function switchA(t:FlxTween)
 	{
 		FlxG.switchState(new MainMenuState());
+	}
+
+	function conGame()
+	{
+		FlxTween.tween(dark, {alpha: 1}, 1, {ease: FlxEase.cubeIn, onComplete: switchB});
+		save.data.name = name.text;
+		Global.dark = 1;
+	}
+
+	function switchB(t:FlxTween)
+	{
+		save.data.save = 0;
+		Global.bZone = '';
+		FlxG.switchState(new mapStates.theRuins.Zone1());
 	}
 
 	function doneNaming() {

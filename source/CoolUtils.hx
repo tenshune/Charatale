@@ -35,14 +35,13 @@ class CoolUtils {
 	}
 
 	static private var currentIndex:Int;
-	static private var interval:Float = 0.05;
 	static private var timer:Float = 0;
 
 	static public function animInit() {
 		currentIndex = 0;
 	}
 
-	static public function textAnimation(text:FlxText, textToAnimate:String, elapsed:Float) {
+	static public function textAnimation(text:FlxText, textToAnimate:String, elapsed:Float, ?sound:String = 'SND_TXT1', ?interval:Float = 0.05) {
 		timer += elapsed;
 
 		// Animation loop
@@ -51,7 +50,7 @@ class CoolUtils {
 			if (timer >= interval)
 			{
 				text.text += textToAnimate.charAt(currentIndex);
-				FlxG.sound.play(Paths.sound('SND_TXT1'));
+				FlxG.sound.play(Paths.sound(sound));
 				currentIndex++;
 				timer = 0;
 			}

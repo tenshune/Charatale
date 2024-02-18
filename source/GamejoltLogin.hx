@@ -176,7 +176,8 @@ class GamejoltLogin extends FlxState
 			save.data.username = username.text;
 			save.data.token = token.text;
 			FlxTween.tween(successfully, {alpha: 1}, 0.2, {ease: FlxEase.cubeIn});
-			Trophies.remAchieved(username.text,token.text,224523);
+			save.data.logged = true;
+			Trophies.addAchieved(username.text,token.text,224523);
 	   }else {
 			FlxTween.tween(errorOnLogin, {alpha: 1}, 0.2, {ease: FlxEase.cubeIn});
 			var tim:FlxTimer;
@@ -232,7 +233,7 @@ class GamejoltLogin extends FlxState
 
 			if (selected == 0)
 			{
-				if (username.text == 'Username')
+				if (username.text == Assets.getText(Paths.lang(lang, 'gamejolt/username')))
 				{
 					username.text = '';
 				}
