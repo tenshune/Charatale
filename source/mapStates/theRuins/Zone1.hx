@@ -1,5 +1,6 @@
 package mapStates.theRuins;
 
+import openfl.Assets;
 import flixel.text.FlxText;
 import flixel.util.FlxTimer;
 import flixel.tweens.FlxEase;
@@ -56,10 +57,14 @@ class Zone1 extends FlxState
 	var text:FlxText;
 	var textToAnimate:String = '';
 
+	var lang:String;
+
 	override function create()
 	{
 		save = new FlxSave();
 		save.bind('charatale');
+
+		lang = save.data.lang;
 
 		Utils.set_game_id(Global.gameID);
 		Utils.set_gamePrivKey(Global.gamePrivateKey);
@@ -113,17 +118,19 @@ class Zone1 extends FlxState
 		col14 = createAndAddFlxSprite(1265, 40, 100, 220);
 
 		tp = createAndAddFlxSprite(1170, 150, 100, 100, FlxColor.GREEN);
+		tp.visible = false;
 
 		Cam.follow(chara, zone.x - 35, zone.y, zone.x + zone.width + 35, zone.y + zone.height);
 
 		super.create();
 
-		if ((save.data.save == 1 || save.data.save == null) && Global.bZone == '')
+		if ((save.data.save == 0 || save.data.save == null))
 		{
 			canMove = false;
 			charaCol.y -= 300;
 			chara.animation.play('Fall');
 			FlxTween.tween(charaCol, {y: FlxG.height / 2 - 40}, 0.6, {onComplete: shakeCmrAnim});
+			Global.bZone = 'trz1';
 		}
 
 		textBox = new FlxSprite(0, 0).loadGraphic(Paths.image('charTextBox'));
@@ -184,7 +191,7 @@ class Zone1 extends FlxState
 
 	function textChange(t:FlxTween)
 	{
-		textToAnimate = 'Uff, what a fall.';
+		textToAnimate = Assets.getText(Paths.lang(lang,'dialogues/1/1'));
 	}
 
 	var inter:Float = 0.05;
@@ -235,30 +242,33 @@ class Zone1 extends FlxState
 			chara.y = charaCol.y - 35;
 		}
 
-		if (text.text == 'Uff, what a fall.' && FlxG.keys.justPressed.ENTER)
+		if (text.text == Assets.getText(Paths.lang(lang, 'dialogues/1/1')) && FlxG.keys.justPressed.ENTER)
 		{
 			CU.animInit();
 			text.text = '';
-			textToAnimate = 'Wait... where de heck am I?';
+			textToAnimate = Assets.getText(Paths.lang(lang, 'dialogues/1/2'));
 			portrait.loadGraphic(Paths.portImage('worried', 'chara'));
 		}
-		else if (text.text == 'Wait... where de heck am I?' && FlxG.keys.justPressed.ENTER)
+		else if (text.text == Assets.getText(Paths.lang(lang, 'dialogues/1/2')) && FlxG.keys.justPressed.ENTER)
 		{
 			CU.animInit();
 			text.text = '';
-			textToAnimate = 'Better find an exit, i\'m sure there is one... somewhere.';
+			textToAnimate = Assets.getText(Paths.lang(lang, 'dialogues/1/3'));
 			portrait.loadGraphic(Paths.portImage('neutral', 'chara'));
 		}
-		else if (text.text == 'Better find an exit, i\'m sure there is one...')
+		else if (text.text == "Better find an exit, i'm sure there is one..."
+			|| text.text == "Mejor encontrar una salida, de seguro hay una...")
 		{
 			inter = 1;
 		}
-		else if (text.text == 'Better find an exit, i\'m sure there is one... ')
+		else if (text.text == "Better find an exit, i'm sure there is one... "
+			|| text.text == "Mejor encontrar una salida, de seguro hay una... ")
 		{
 			inter = 0.05;
 			portrait.loadGraphic(Paths.portImage('worried', 'chara'));
 		}
-		else if (text.text == 'Better find an exit, i\'m sure there is one... somewhere.' && FlxG.keys.justPressed.ENTER)
+		else if ((text.text == "Better find an exit, i'm sure there is one... somewhere."
+			|| text.text == "Mejor encontrar una salida, de seguro hay una... en alguna parte.") && FlxG.keys.justPressed.ENTER)
 		{
 			FlxTween.tween(textBox, {alpha: 0}, 0.5, {onComplete: moveAgain});
 			FlxTween.tween(text, {alpha: 0}, 0.5);
