@@ -45,6 +45,10 @@ class Zone1 extends FlxState
 	var col13:FlxSprite;
 	var col14:FlxSprite;
 
+	var tp:FlxSprite;
+
+	var dark:FlxSprite;
+
 	var save:FlxSave;
 
 	var portrait:FlxSprite;
@@ -108,11 +112,13 @@ class Zone1 extends FlxState
 		col13 = createAndAddFlxSprite(1305, 36, 100, 1000);
 		col14 = createAndAddFlxSprite(1265, 40, 100, 220);
 
+		tp = createAndAddFlxSprite(1170, 150, 100, 100, FlxColor.GREEN);
+
 		Cam.follow(chara, zone.x - 35, zone.y, zone.x + zone.width + 35, zone.y + zone.height);
 
 		super.create();
 
-		if ((save.data.save == 0 || save.data.save == null) && Global.bZone == '')
+		if ((save.data.save == 1 || save.data.save == null) && Global.bZone == '')
 		{
 			canMove = false;
 			charaCol.y -= 300;
@@ -135,6 +141,12 @@ class Zone1 extends FlxState
 		portrait.scale.y = 1.25;
 		portrait.alpha = 0;
 		add(portrait);
+
+		dark = new FlxSprite(0, 0);
+		dark.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		dark.alpha = 0;
+		Global.dark = 0;
+		add(dark);
 
 		CU.animInit();
 		text.text = "";
@@ -200,6 +212,8 @@ class Zone1 extends FlxState
 		}
 		while (i < cols.length);
 
+		CU.collide(charaCol, tp, true, Zone2);
+
 		CU.textAnimation(text, textToAnimate, elapsed, 'SND_TXT1', inter);
 
 		chara.x = charaCol.x;
@@ -262,12 +276,25 @@ class Zone1 extends FlxState
 		}
 	}
 
-	function createAndAddFlxSprite(x:Int, y:Int, width:Int, height:Int):FlxSprite
+	function createAndAddFlxSprite(x:Int, y:Int, width:Int, height:Int, ?color:FlxColor = FlxColor.RED):FlxSprite
 	{
 		var sprite = new FlxSprite(x, y);
-		sprite.makeGraphic(width, height, FlxColor.RED);
+		sprite.makeGraphic(width, height, color);
 		sprite.updateHitbox();
 		add(sprite);
 		return sprite;
+	}
+
+	function Zone2()
+	{
+		FlxTween.tween(dark, {alpha: 1}, 1.5, {onComplete: switchA});
+		canMove = false;
+		chara.animation.frameIndex = 0;
+		chara.animation.stop();
+	}
+
+	function switchA(t:FlxTween)
+	{
+		FlxG.switchState(new mapStates.theRuins.Zone2());
 	}
 }
