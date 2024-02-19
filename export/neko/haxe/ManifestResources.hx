@@ -170,6 +170,9 @@ import sys.FileSystem;
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_choose_warning_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_choose_yes_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_continue_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_dialogues_1_1_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_dialogues_1_2_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_dialogues_1_3_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_gamejolt_auth_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_gamejolt_authagain_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_gamejolt_back_txt extends null { }

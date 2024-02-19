@@ -151,8 +151,7 @@ class Zone1 extends FlxState
 
 		dark = new FlxSprite(0, 0);
 		dark.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-		dark.alpha = 0;
-		Global.dark = 0;
+		dark.alpha = 1;
 		add(dark);
 
 		CU.animInit();
@@ -189,6 +188,8 @@ class Zone1 extends FlxState
 		charaCol.y += 5;
 	}
 
+	var dial:Int = 1;
+
 	function textChange(t:FlxTween)
 	{
 		textToAnimate = Assets.getText(Paths.lang(lang,'dialogues/1/1'));
@@ -198,6 +199,11 @@ class Zone1 extends FlxState
 
 	override function update(elapsed:Float)
 	{
+		if (dark.alpha > 0)
+		{
+			dark.alpha -= 0.05;
+		}
+
 		if (canMove)
 		{
 			Movement.keyboardMove(charaCol);
@@ -247,6 +253,7 @@ class Zone1 extends FlxState
 			CU.animInit();
 			text.text = '';
 			textToAnimate = Assets.getText(Paths.lang(lang, 'dialogues/1/2'));
+			dial = 2;
 			portrait.loadGraphic(Paths.portImage('worried', 'chara'));
 		}
 		else if (text.text == Assets.getText(Paths.lang(lang, 'dialogues/1/2')) && FlxG.keys.justPressed.ENTER)
@@ -254,6 +261,7 @@ class Zone1 extends FlxState
 			CU.animInit();
 			text.text = '';
 			textToAnimate = Assets.getText(Paths.lang(lang, 'dialogues/1/3'));
+			dial = 3;
 			portrait.loadGraphic(Paths.portImage('neutral', 'chara'));
 		}
 		else if (text.text == "Better find an exit, i'm sure there is one..."
@@ -267,12 +275,17 @@ class Zone1 extends FlxState
 			inter = 0.05;
 			portrait.loadGraphic(Paths.portImage('worried', 'chara'));
 		}
-		else if ((text.text == "Better find an exit, i'm sure there is one... somewhere."
-			|| text.text == "Mejor encontrar una salida, de seguro hay una... en alguna parte.") && FlxG.keys.justPressed.ENTER)
+		else if (text.text == Assets.getText(Paths.lang(lang, 'dialogues/1/3')) && FlxG.keys.justPressed.ENTER)
 		{
 			FlxTween.tween(textBox, {alpha: 0}, 0.5, {onComplete: moveAgain});
 			FlxTween.tween(text, {alpha: 0}, 0.5);
 			FlxTween.tween(portrait, {alpha: 0}, 0.5);
+		}else {
+			if (FlxG.keys.justPressed.ENTER && text.text != '') {
+				CU.animInit();
+				textToAnimate = '';
+				text.text = Assets.getText(Paths.lang(lang, 'dialogues/1/'+dial));
+			}
 		}
 	}
 
