@@ -15,6 +15,8 @@ class Zone2 extends FlxState {
 
     var chara:FlxSprite;
 	var charaCol:FlxSprite;
+
+	var asriel:FlxSprite;
     
     var col1:FlxSprite;
 	var col2:FlxSprite;
@@ -52,6 +54,16 @@ class Zone2 extends FlxState {
 		chara.x -= 40;
 		add(chara);
 
+		asriel = new FlxSprite(0, zone.height-130);
+		asriel.frames = Paths.getSparrowAtlas('asriel');
+		asriel.animation.addByPrefix('Down', 'Down', 0, true);
+		asriel.animation.addByPrefix('Up', 'Up', 4);
+		asriel.scale.x = 2;
+		asriel.scale.y = 2;
+		asriel.updateHitbox();
+		asriel.screenCenter(X);
+		add(asriel);
+
 		charaCol = new FlxSprite(FlxG.width / 2 - 35, FlxG.height / 2 - 50);
 		charaCol.makeGraphic(40, 25, FlxColor.LIME);
 		charaCol.visible = false;
@@ -70,7 +82,7 @@ class Zone2 extends FlxState {
         super.create();
 
 		dark = new FlxSprite(0, 0);
-		dark.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		dark.makeGraphic(FlxG.width, Math.floor(zone.height*2), FlxColor.BLACK);
 		dark.alpha = 1;
 		add(dark);
     }

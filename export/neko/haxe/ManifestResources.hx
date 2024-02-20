@@ -97,6 +97,8 @@ import sys.FileSystem;
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_data_data_goes_here_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_fonts_determination_ttf extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_fonts_monsterfriendf_otf extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_asriel_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_asriel_xml extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_chara_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_chara_xml extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_chartextbox_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }

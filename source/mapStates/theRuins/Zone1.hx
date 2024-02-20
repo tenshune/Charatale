@@ -150,7 +150,7 @@ class Zone1 extends FlxState
 		add(portrait);
 
 		dark = new FlxSprite(0, 0);
-		dark.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		dark.makeGraphic(Math.floor(zone.width+50), FlxG.height, FlxColor.BLACK);
 		dark.alpha = 1;
 		add(dark);
 
@@ -310,7 +310,7 @@ class Zone1 extends FlxState
 
 	function Zone2()
 	{
-		FlxTween.tween(dark, {alpha: 1}, 1.5, {onComplete: switchA});
+		FlxTween.tween(dark, {alpha: 1}, 1, {onComplete: switchA});
 		canMove = false;
 		chara.animation.frameIndex = 0;
 		chara.animation.stop();
