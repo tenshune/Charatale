@@ -225,6 +225,7 @@ import sys.FileSystem;
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_dialogues_1_1_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_dialogues_1_2_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_dialogues_1_3_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_dialogues_2_1_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_gamejolt_auth_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_gamejolt_authagain_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_gamejolt_back_txt extends null { }

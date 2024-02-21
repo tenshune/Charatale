@@ -1,5 +1,9 @@
 package mapStates.theRuins;
 
+import flixel.tweens.FlxTween;
+import flixel.util.FlxSave;
+import openfl.utils.Assets;
+import flixel.text.FlxText;
 import flixel.FlxG;
 import flixel.util.FlxColor;
 import flixel.FlxSprite;
@@ -27,9 +31,27 @@ class Zone2 extends FlxState {
 
 	var canMove:Bool = true;
 
+	var portrait:FlxSprite;
+	var textBox:FlxSprite;
+	var text:FlxText;
+	var textToAnimate:String = '';
+
     var dark:FlxSprite;
 
+	var textSound:String = 'SND_TXT1';
+	var inter:Float = 0.05;
+
+	var dialInt:Bool = false;
+
+	var save:FlxSave;
+	var lang:String;
+
     override function create() {
+
+		save = new FlxSave();
+		save.bind('charatale');
+
+		lang = save.data.lang;
 
         zone = new FlxSprite(0,0).loadGraphic(Paths.mapImg('zone 2', 'the ruins'));
 		zone.scale.x = 2;
@@ -81,10 +103,29 @@ class Zone2 extends FlxState {
 
         super.create();
 
+		textBox = new FlxSprite(0, 0).loadGraphic(Paths.image('charTextBox'));
+		textBox.screenCenter(X);
+		textBox.y = FlxG.height - textBox.height;
+		textBox.alpha = 0;
+		add(textBox);
+
+		text = new FlxText(200, 350, 400, '', 24);
+		text.alpha = 0;
+		add(text);
+
+		portrait = new FlxSprite(textBox.x + 30, textBox.y + (textBox.height / 2 - 30)).loadGraphic(Paths.portImage('tired', 'chara'));
+		portrait.scale.x = 1.25;
+		portrait.scale.y = 1.25;
+		portrait.alpha = 0;
+		add(portrait);
+
 		dark = new FlxSprite(0, 0);
 		dark.makeGraphic(FlxG.width, Math.floor(zone.height*2), FlxColor.BLACK);
 		dark.alpha = 1;
 		add(dark);
+
+		CU.animInit();
+		text.text = "";
     }
 
     override function update(elapsed:Float) {
@@ -114,11 +155,29 @@ class Zone2 extends FlxState {
 		}
 		while (i < cols.length);
 
+		CU.textAnimation(text, textToAnimate, elapsed, textSound, inter);
+
         chara.x = charaCol.x;
 		chara.y = charaCol.y - 35;
 
         super.update(elapsed);
+
+		if ((chara.x >= 10 && chara.x <= 590) && chara.y <= 448 && !dialInt) {
+			canMove = false;
+			dialInt = true;
+			FlxTween.tween(textBox, {alpha: 1}, 0.5, {onComplete: textChange});
+			FlxTween.tween(text, {alpha: 1}, 0.5);
+			FlxTween.tween(portrait, {alpha: 1}, 0.5);
+		}
+
+		if (FlxG.keys.justPressed.Z) {
+			trace(chara.x,chara.y);
+		}
     }
+
+	function textChange(t:FlxTween) {
+		textToAnimate = Assets.getText(Paths.lang(lang, 'dialogues/2/1'));
+	}
 
 	function createAndAddFlxSprite(x:Int, y:Int, width:Int, height:Int, ?color:FlxColor = FlxColor.RED):FlxSprite
 	{
