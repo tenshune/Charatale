@@ -105,11 +105,11 @@ class Zone2 extends FlxState {
 
 		textBox = new FlxSprite(0, 0).loadGraphic(Paths.image('charTextBox'));
 		textBox.screenCenter(X);
-		textBox.y = FlxG.height - textBox.height;
+		textBox.y = FlxG.camera.height-textBox.height+200;
 		textBox.alpha = 0;
 		add(textBox);
 
-		text = new FlxText(200, 350, 400, '', 24);
+		text = new FlxText(200, textBox.y+20, 400, '', 24);
 		text.alpha = 0;
 		add(text);
 
@@ -127,6 +127,8 @@ class Zone2 extends FlxState {
 		CU.animInit();
 		text.text = "";
     }
+
+	var dial = 0;
 
     override function update(elapsed:Float) {
 		if (dark.alpha > 0)
@@ -164,19 +166,73 @@ class Zone2 extends FlxState {
 
 		if ((chara.x >= 10 && chara.x <= 590) && chara.y <= 448 && !dialInt) {
 			canMove = false;
+			chara.animation.stop();
 			dialInt = true;
+			portrait.loadGraphic(Paths.portImage('sad', 'asriel'));
 			FlxTween.tween(textBox, {alpha: 1}, 0.5, {onComplete: textChange});
 			FlxTween.tween(text, {alpha: 1}, 0.5);
 			FlxTween.tween(portrait, {alpha: 1}, 0.5);
 		}
 
-		if (FlxG.keys.justPressed.Z) {
-			trace(chara.x,chara.y);
+		if (text.text == Assets.getText(Paths.lang(lang, 'dialogues/2/1')) && FlxG.keys.justPressed.ENTER) {
+			CU.animInit();
+			text.text = '';
+			dial = 2;
+			textToAnimate = Assets.getText(Paths.lang(lang, 'dialogues/2/2'));
+			portrait.loadGraphic(Paths.portImage('worried', 'chara'));
+		} 
+		else if (text.text == Assets.getText(Paths.lang(lang, 'dialogues/2/2')) && FlxG.keys.justPressed.ENTER)
+		{
+			CU.animInit();
+			text.text = '';
+			dial = 3;
+			textToAnimate = Assets.getText(Paths.lang(lang, 'dialogues/2/3'));
+			portrait.loadGraphic(Paths.portImage('happy', 'asriel'));
+		}
+		else if (text.text == Assets.getText(Paths.lang(lang, 'dialogues/2/3')) && FlxG.keys.justPressed.ENTER)
+		{
+			CU.animInit();
+			text.text = '';
+			dial = 4;
+			textToAnimate = Assets.getText(Paths.lang(lang, 'dialogues/2/4'));
+			portrait.loadGraphic(Paths.portImage('worried', 'chara'));
+		}
+		else if (text.text == Assets.getText(Paths.lang(lang, 'dialogues/2/4')) && FlxG.keys.justPressed.ENTER)
+		{
+			CU.animInit();
+			text.text = '';
+			dial = 5;
+			textToAnimate = Assets.getText(Paths.lang(lang, 'dialogues/2/5'));
+			portrait.loadGraphic(Paths.portImage('happy', 'asriel'));
+		}
+		else if (text.text == Assets.getText(Paths.lang(lang, 'dialogues/2/5')) && FlxG.keys.justPressed.ENTER)
+		{
+			CU.animInit();
+			text.text = '';
+			dial = 6;
+			textToAnimate = Assets.getText(Paths.lang(lang, 'dialogues/2/6'));
+			portrait.loadGraphic(Paths.portImage('worried', 'chara'));
+		}
+		else if (text.text == Assets.getText(Paths.lang(lang, 'dialogues/2/6')) && FlxG.keys.justPressed.ENTER)
+		{
+			FlxTween.tween(textBox, {alpha: 0}, 0.5, {onComplete: moveAgain});
+			FlxTween.tween(text, {alpha: 0}, 0.5);
+			FlxTween.tween(portrait, {alpha: 0}, 0.5);
+		}
+		else
+		{
+			if (FlxG.keys.justPressed.ENTER && text.text != '')
+			{
+				CU.animInit();
+				textToAnimate = '';
+				text.text = Assets.getText(Paths.lang(lang, 'dialogues/2/' + dial));
+			}
 		}
     }
 
 	function textChange(t:FlxTween) {
 		textToAnimate = Assets.getText(Paths.lang(lang, 'dialogues/2/1'));
+		dial = 1;
 	}
 
 	function createAndAddFlxSprite(x:Int, y:Int, width:Int, height:Int, ?color:FlxColor = FlxColor.RED):FlxSprite
@@ -186,5 +242,10 @@ class Zone2 extends FlxState {
 		sprite.updateHitbox();
 		add(sprite);
 		return sprite;
+	}
+
+	function moveAgain(t:FlxTween)
+	{
+		canMove = true;
 	}
 }

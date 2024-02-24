@@ -136,6 +136,8 @@ import sys.FileSystem;
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_maps_the_ruins_zone_8_a_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_maps_the_ruins_zone_8_b_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_maps_the_ruins_zone_9_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_portraits_asriel_happy_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_portraits_asriel_sad_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_portraits_chara_neutral_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_portraits_chara_tired_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_images_portraits_chara_worried_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
@@ -226,6 +228,11 @@ import sys.FileSystem;
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_dialogues_1_2_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_dialogues_1_3_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_dialogues_2_1_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_dialogues_2_2_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_dialogues_2_3_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_dialogues_2_4_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_dialogues_2_5_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_dialogues_2_6_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_gamejolt_auth_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_gamejolt_authagain_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_gamejolt_back_txt extends null { }
