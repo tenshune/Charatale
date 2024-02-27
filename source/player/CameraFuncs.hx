@@ -4,11 +4,10 @@ import flixel.FlxG;
 import flixel.util.FlxColor;
 import flixel.FlxCamera;
 import flixel.FlxSprite;
-import flixel.FlxState;
 
 class CameraFuncs
 {
-	static public function follow(player:FlxSprite, boundX:Float, boundY:Float, boundX2:Float, boundY2:Float)
+	static public function newFollow(player:FlxSprite, boundX:Float, boundY:Float, boundX2:Float, boundY2:Float)
 	{
 		var camera = new FlxCamera(0,0);
 		camera.bgColor = FlxColor.TRANSPARENT;
@@ -17,4 +16,13 @@ class CameraFuncs
         FlxG.cameras.reset(camera);                         
         camera.target = player;   
     }  
+
+	static public function follow(camera:FlxCamera, player:FlxSprite, boundX:Float, boundY:Float, boundX2:Float, boundY2:Float)
+	{
+		camera = new FlxCamera(0, 0);
+		camera.bgColor = FlxColor.TRANSPARENT;
+		camera.setScrollBoundsRect(boundX, boundY, boundX2, boundY2);
+		FlxG.cameras.reset(camera);
+		camera.target = player;
+	}  
 }

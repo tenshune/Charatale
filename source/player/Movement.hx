@@ -78,8 +78,11 @@ class Movement {
 			}
 			else
 			{
-				playerChar.animation.stop();
-				playerChar.animation.frameIndex = 0;
+				if (playerChar.animation.curAnim != null)
+				{
+					var currentAnimationName:String = playerChar.animation.curAnim.name;
+					playerChar.animation.play(currentAnimationName, true, 0);
+				}
 			}
 		}
 	}

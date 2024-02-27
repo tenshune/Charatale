@@ -177,6 +177,12 @@ import sys.FileSystem;
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_dialogues_1_1_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_dialogues_1_2_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_dialogues_1_3_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_dialogues_2_1_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_dialogues_2_2_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_dialogues_2_3_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_dialogues_2_4_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_dialogues_2_5_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_dialogues_2_6_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_gamejolt_auth_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_gamejolt_authagain_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_english_gamejolt_back_txt extends null { }

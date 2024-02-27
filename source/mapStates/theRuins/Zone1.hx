@@ -120,7 +120,7 @@ class Zone1 extends FlxState
 		tp = createAndAddFlxSprite(1170, 150, 100, 100, FlxColor.GREEN);
 		tp.visible = false;
 
-		Cam.follow(chara, zone.x - 35, zone.y, zone.x + zone.width + 35, zone.y + zone.height);
+		Cam.newFollow(chara, zone.x - 35, zone.y, zone.x + zone.width + 35, zone.y + zone.height);
 
 		super.create();
 
