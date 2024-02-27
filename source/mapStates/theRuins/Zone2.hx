@@ -130,6 +130,19 @@ class Zone2 extends FlxState {
 
 	var dial = 0;
 
+	function handleDialog(key:Int, nextKey:Int, graphic:String, char:String)
+	{
+		if (text.text == Assets.getText(Paths.lang(lang, 'dialogues/2/' + key)).split("user").join(save.data.name) && FlxG.keys.justPressed.ENTER)
+		{
+			CU.animInit();
+			text.text = '';
+			dial++;
+			textToAnimate = Assets.getText(Paths.lang(lang, 'dialogues/2/' + nextKey));
+			textToAnimate = textToAnimate.split("user").join(save.data.name);
+			portrait.loadGraphic(Paths.portImage(graphic, char));
+		}
+	}
+
     override function update(elapsed:Float) {
 		if (dark.alpha > 0)
 		{
@@ -174,58 +187,22 @@ class Zone2 extends FlxState {
 			FlxTween.tween(portrait, {alpha: 1}, 0.5);
 		}
 
-		if (text.text == Assets.getText(Paths.lang(lang, 'dialogues/2/1')) && FlxG.keys.justPressed.ENTER) {
-			CU.animInit();
-			text.text = '';
-			dial = 2;
-			textToAnimate = Assets.getText(Paths.lang(lang, 'dialogues/2/2'));
-			portrait.loadGraphic(Paths.portImage('worried', 'chara'));
-		} 
-		else if (text.text == Assets.getText(Paths.lang(lang, 'dialogues/2/2')) && FlxG.keys.justPressed.ENTER)
-		{
-			CU.animInit();
-			text.text = '';
-			dial = 3;
-			textToAnimate = Assets.getText(Paths.lang(lang, 'dialogues/2/3'));
-			portrait.loadGraphic(Paths.portImage('happy', 'asriel'));
-		}
-		else if (text.text == Assets.getText(Paths.lang(lang, 'dialogues/2/3')) && FlxG.keys.justPressed.ENTER)
-		{
-			CU.animInit();
-			text.text = '';
-			dial = 4;
-			textToAnimate = Assets.getText(Paths.lang(lang, 'dialogues/2/4'));
-			portrait.loadGraphic(Paths.portImage('worried', 'chara'));
-		}
-		else if (text.text == Assets.getText(Paths.lang(lang, 'dialogues/2/4')) && FlxG.keys.justPressed.ENTER)
-		{
-			CU.animInit();
-			text.text = '';
-			dial = 5;
-			textToAnimate = Assets.getText(Paths.lang(lang, 'dialogues/2/5'));
-			portrait.loadGraphic(Paths.portImage('happy', 'asriel'));
-		}
-		else if (text.text == Assets.getText(Paths.lang(lang, 'dialogues/2/5')) && FlxG.keys.justPressed.ENTER)
-		{
-			CU.animInit();
-			text.text = '';
-			dial = 6;
-			textToAnimate = Assets.getText(Paths.lang(lang, 'dialogues/2/6'));
-			portrait.loadGraphic(Paths.portImage('worried', 'chara'));
-		}
-		else if (text.text == Assets.getText(Paths.lang(lang, 'dialogues/2/6')) && FlxG.keys.justPressed.ENTER)
-		{
+		handleDialog(1, 2, 'worried', 'chara');
+		handleDialog(2, 3, 'happy', 'asriel');
+		handleDialog(3, 4, 'worried', 'chara');
+		handleDialog(4, 5, 'happy', 'asriel');
+		handleDialog(5, 6, 'worried', 'chara');
+
+		if (text.text == Assets.getText(Paths.lang(lang, 'dialogues/2/6')) && FlxG.keys.justPressed.ENTER) {
 			FlxTween.tween(textBox, {alpha: 0}, 0.5, {onComplete: moveAgain});
 			FlxTween.tween(text, {alpha: 0}, 0.5);
 			FlxTween.tween(portrait, {alpha: 0}, 0.5);
 		}
-		else
-		{
-			if (FlxG.keys.justPressed.ENTER && text.text != '')
-			{
+		else {
+			if (FlxG.keys.justPressed.ENTER && text.text != '') {
 				CU.animInit();
 				textToAnimate = '';
-				text.text = Assets.getText(Paths.lang(lang, 'dialogues/2/' + dial));
+				text.text = Assets.getText(Paths.lang(lang, 'dialogues/2/' + dial)).split("user").join(save.data.name);
 			}
 		}
     }
