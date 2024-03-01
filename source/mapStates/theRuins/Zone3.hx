@@ -43,8 +43,8 @@ class Zone3 extends FlxState {
 		asriel = new FlxSprite(0,0);
 		asriel.frames = Paths.getSparrowAtlas('asriel');
 		asriel.animation.addByPrefix('Down', 'Down', 0, true);
-		asriel.animation.addByPrefix('Up', 'Up', 4, true);
-		asriel.animation.addByPrefix('Left', 'Left', 4, true);
+		asriel.animation.addByPrefix('Up', 'Up', 5, true);
+		asriel.animation.addByPrefix('Left', 'Left', 5, true);
 		asriel.scale.x = 2;
 		asriel.scale.y = 2;
 		asriel.updateHitbox();
@@ -91,7 +91,7 @@ class Zone3 extends FlxState {
 
 		if (charaCol.y <= 359 && asriel.y == 212) {
 			asriel.animation.play('Up');
-			FlxTween.tween(asriel,{y:165, x:380}, 0.6);
+			FlxTween.tween(asriel,{y:165, x:380}, 0.6, {onComplete: asMove1});
 		}
 
         super.update(elapsed);
@@ -100,4 +100,24 @@ class Zone3 extends FlxState {
             trace('X = '+charaCol.x,'Y = '+charaCol.y);
         }
     }
+
+	function asMove1(t:FlxTween) {
+		FlxTween.tween(asriel, {y: 15, x: 510}, 1.15, {onComplete: asMove2});
+	}
+
+	function asMove2(t:FlxTween)
+	{
+		FlxTween.tween(asriel, {y: -55, x: 465}, 0.45, {onComplete: asMove3});
+	}
+	function asMove3(t:FlxTween)
+	{
+		asriel.animation.play('Left');
+		FlxTween.tween(asriel, {y: -55, x: 306}, 0.8, {onComplete: asMove4});
+	}
+	function asMove4(t:FlxTween)
+	{
+		asriel.animation.play('Up');
+		FlxTween.tween(asriel, {alpha: 0}, 0.6);
+		FlxTween.tween(asriel, {y: -100, x: 306}, 1.2);
+	}
 }
