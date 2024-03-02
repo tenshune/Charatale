@@ -8,23 +8,21 @@ import flixel.FlxG;
 import flixel.util.FlxColor;
 import flixel.FlxSprite;
 import flixel.FlxState;
-
 import flixel.FlxCamera;
-
 import player.Movement as Movement;
 import CoolUtils as CU;
 import player.CameraFuncs as Cam;
 
-class Zone2 extends FlxState {
+class Zone2 extends FlxState
+{
+	var zone:FlxSprite;
 
-    var zone:FlxSprite;
-
-    var chara:FlxSprite;
+	var chara:FlxSprite;
 	var charaCol:FlxSprite;
 
 	var asriel:FlxSprite;
-    
-    var col1:FlxSprite;
+
+	var col1:FlxSprite;
 	var col2:FlxSprite;
 	var col3:FlxSprite;
 	var col4:FlxSprite;
@@ -38,7 +36,7 @@ class Zone2 extends FlxState {
 	var text:FlxText;
 	var textToAnimate:String = '';
 
-    var dark:FlxSprite;
+	var dark:FlxSprite;
 
 	var textSound:String = 'snd_txtasr';
 	var inter:Float = 0.05;
@@ -50,14 +48,16 @@ class Zone2 extends FlxState {
 
 	var cam:FlxCamera;
 
-    override function create() {
+	var tp:FlxSprite;
 
+	override function create()
+	{
 		save = new FlxSave();
 		save.bind('charatale');
 
 		lang = save.data.lang;
 
-        zone = new FlxSprite(0,0).loadGraphic(Paths.mapImg('zone 2', 'the ruins'));
+		zone = new FlxSprite(0, 0).loadGraphic(Paths.mapImg('zone 2', 'the ruins'));
 		zone.scale.x = 2;
 		zone.scale.y = 2;
 		zone.updateHitbox();
@@ -80,11 +80,11 @@ class Zone2 extends FlxState {
 		chara.x -= 40;
 		add(chara);
 
-		asriel = new FlxSprite(0, zone.height-130);
+		asriel = new FlxSprite(0, zone.height - 130);
 		asriel.frames = Paths.getSparrowAtlas('asriel');
 		asriel.animation.addByPrefix('Down', 'Down', 0, true);
-		asriel.animation.addByPrefix('Up', 'Up', 4,true);
-		asriel.animation.addByPrefix('Left', 'Left',4,true);
+		asriel.animation.addByPrefix('Up', 'Up', 4, true);
+		asriel.animation.addByPrefix('Left', 'Left', 4, true);
 		asriel.scale.x = 2;
 		asriel.scale.y = 2;
 		asriel.updateHitbox();
@@ -97,14 +97,19 @@ class Zone2 extends FlxState {
 		charaCol.y = Math.floor(zone.height) * 2 - 100;
 		add(charaCol);
 
-        col1 = createAndAddFlxSprite(0,0,1000,70);
+		col1 = createAndAddFlxSprite(0, 0, 1000, 70);
 		col2 = createAndAddFlxSprite(0, 70, 275, 80);
-		col3 = createAndAddFlxSprite(275*2-185, 70, 275, 80);
-        col4 = createAndAddFlxSprite(0,0,10,10000);
-		col5 = createAndAddFlxSprite(FlxG.width-10, 0, 10, 10000);
-        col6 = createAndAddFlxSprite(0,Math.floor(zone.height)*2-40,1000,15);
+		col3 = createAndAddFlxSprite(275 * 2 - 185, 70, 275, 80);
+		col4 = createAndAddFlxSprite(0, 0, 10, 10000);
+		col5 = createAndAddFlxSprite(FlxG.width - 10, 0, 10, 10000);
+		col6 = createAndAddFlxSprite(0, Math.floor(zone.height) * 2 - 40, 1000, 15);
 
-		//Cam.follow(cam, chara, zone.x - 35, zone.y, zone.x + zone.width + 35, zone.y + (zone.height*2));
+		tp = createAndAddFlxSprite(0, 50, 80, 80, FlxColor.GREEN);
+		tp.screenCenter(X);
+		tp.visible = false;
+		tp.x -= 2;
+
+		// Cam.follow(cam, chara, zone.x - 35, zone.y, zone.x + zone.width + 35, zone.y + (zone.height*2));
 
 		cam = new FlxCamera(0, 0);
 		cam.bgColor = FlxColor.TRANSPARENT;
@@ -112,15 +117,15 @@ class Zone2 extends FlxState {
 		FlxG.cameras.reset(cam);
 		cam.target = chara;
 
-        super.create();
+		super.create();
 
 		textBox = new FlxSprite(0, 0).loadGraphic(Paths.image('charTextBox'));
 		textBox.screenCenter(X);
-		textBox.y = FlxG.camera.height-textBox.height+200;
+		textBox.y = FlxG.camera.height - textBox.height + 200;
 		textBox.alpha = 0;
 		add(textBox);
 
-		text = new FlxText(200, textBox.y+20, 400, '', 24);
+		text = new FlxText(200, textBox.y + 20, 400, '', 24);
 		text.alpha = 0;
 		add(text);
 
@@ -131,19 +136,20 @@ class Zone2 extends FlxState {
 		add(portrait);
 
 		dark = new FlxSprite(0, 0);
-		dark.makeGraphic(FlxG.width, Math.floor(zone.height*2), FlxColor.BLACK);
+		dark.makeGraphic(FlxG.width, Math.floor(zone.height * 2), FlxColor.BLACK);
 		dark.alpha = 1;
 		add(dark);
 
 		CU.animInit();
 		text.text = "";
-    }
+	}
 
 	var dial = 0;
 
 	function handleDialog(key:Int, nextKey:Int, graphic:String, char:String, ?sound:String = 'SND_TXT1')
 	{
-		if (text.text == Assets.getText(Paths.lang(lang, 'dialogues/2/' + key)).split("user").join(save.data.name) && FlxG.keys.justPressed.ENTER)
+		if (text.text == Assets.getText(Paths.lang(lang, 'dialogues/2/' + key)).split("user").join(save.data.name)
+			&& FlxG.keys.justPressed.ENTER)
 		{
 			CU.animInit();
 			text.text = '';
@@ -155,21 +161,20 @@ class Zone2 extends FlxState {
 		}
 	}
 
-    override function update(elapsed:Float) {
+	override function update(elapsed:Float)
+	{
 		if (dark.alpha > 0)
 		{
 			dark.alpha -= 0.05;
 		}
-        
+
 		if (canMove)
 		{
 			Movement.keyboardMove(charaCol);
 			Movement.keyboardMove(chara, true);
 		}
 
-		var cols:Array<FlxSprite> = [
-			col1, col2, col3, col4, col5, col6
-		];
+		var cols:Array<FlxSprite> = [col1, col2, col3, col4, col5, col6];
 		var i:Int = 0;
 		do
 		{
@@ -182,14 +187,17 @@ class Zone2 extends FlxState {
 		}
 		while (i < cols.length);
 
+		CU.collide(charaCol, tp, true, zoneChange);
+
 		CU.textAnimation(text, textToAnimate, elapsed, textSound, inter);
 
-        chara.x = charaCol.x;
+		chara.x = charaCol.x;
 		chara.y = charaCol.y - 35;
 
-        super.update(elapsed);
+		super.update(elapsed);
 
-		if ((chara.x >= 10 && chara.x <= 590) && chara.y <= 448 && !dialInt) {
+		if ((chara.x >= 10 && chara.x <= 590) && chara.y <= 448 && !dialInt)
+		{
 			canMove = false;
 			chara.animation.stop();
 			dialInt = true;
@@ -205,21 +213,25 @@ class Zone2 extends FlxState {
 		handleDialog(4, 5, 'happy', 'asriel', 'snd_txtasr');
 		handleDialog(5, 6, 'worried', 'chara');
 
-		if (text.text == Assets.getText(Paths.lang(lang, 'dialogues/2/6')) && FlxG.keys.justPressed.ENTER) {
+		if (text.text == Assets.getText(Paths.lang(lang, 'dialogues/2/6')) && FlxG.keys.justPressed.ENTER)
+		{
 			FlxTween.tween(textBox, {alpha: 0}, 0.5, {onComplete: byeAs});
 			FlxTween.tween(text, {alpha: 0}, 0.5);
 			FlxTween.tween(portrait, {alpha: 0}, 0.5);
 		}
-		else {
-			if (FlxG.keys.justPressed.ENTER && text.text != '') {
+		else
+		{
+			if (FlxG.keys.justPressed.ENTER && text.text != '')
+			{
 				CU.animInit();
 				textToAnimate = '';
 				text.text = Assets.getText(Paths.lang(lang, 'dialogues/2/' + dial)).split("user").join(save.data.name);
 			}
 		}
-    }
+	}
 
-	function textChange(t:FlxTween) {
+	function textChange(t:FlxTween)
+	{
 		textToAnimate = Assets.getText(Paths.lang(lang, 'dialogues/2/1'));
 		dial = 1;
 	}
@@ -233,10 +245,11 @@ class Zone2 extends FlxState {
 		return sprite;
 	}
 
-	function byeAs(t:FlxTween) {
+	function byeAs(t:FlxTween)
+	{
 		asriel.animation.play("Up");
-		FlxTween.tween(cam,{y:cam.y+30}, 0.5);
-		FlxTween.tween(asriel,{y:-150},2.5, {onComplete: moveAgain});
+		FlxTween.tween(cam, {y: cam.y + 30}, 0.5);
+		FlxTween.tween(asriel, {y: -150}, 2.5, {onComplete: moveAgain});
 	}
 
 	function moveAgain(t:FlxTween)
@@ -244,5 +257,18 @@ class Zone2 extends FlxState {
 		asriel.visible = false;
 		FlxTween.tween(cam, {y: cam.y - 30}, 0.15);
 		canMove = true;
+	}
+
+	function zoneChange()
+	{
+		FlxTween.tween(dark, {alpha: 1}, 1, {onComplete: zone3});
+		canMove = false;
+		chara.animation.frameIndex = 0;
+		chara.animation.stop();
+	}
+
+	function zone3(t:FlxTween)
+	{
+		FlxG.switchState(new mapStates.theRuins.Zone3());
 	}
 }
