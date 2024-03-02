@@ -9,6 +9,8 @@ import flixel.FlxState;
 import player.CameraFuncs as Cam;
 import player.Movement;
 
+import CoolUtils as CU;
+
 class Zone3 extends FlxState {
 
     var zone:FlxSprite;
@@ -20,6 +22,14 @@ class Zone3 extends FlxState {
 
 	var canMove:Bool = true;
 	var asriel:FlxSprite;
+
+	var checkTrigger:Bool = false;
+
+	var col1:FlxSprite;
+	var col2:FlxSprite;
+	var col3:FlxSprite;
+	var col4:FlxSprite;
+	var col5:FlxSprite;
 
     override function create() {
 
@@ -50,6 +60,9 @@ class Zone3 extends FlxState {
 		asriel.updateHitbox();
 		asriel.screenCenter(XY);
 		add(asriel);
+
+		col1 = createAndAddFlxSprite(2, -250, 80, 10000);
+		col2 = createAndAddFlxSprite(562, -250, 80, 10000);
 
 		chara = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
 		chara.frames = Paths.getSparrowAtlas('Chara');
@@ -89,6 +102,16 @@ class Zone3 extends FlxState {
 		chara.x = charaCol.x;
 		chara.y = charaCol.y - 35;
 
+		checkTrigger = false;
+
+		CU.collide(charaCol, check);
+		CU.collide(chara, check, true,checkCollision);
+
+		var cols:Array<FlxSprite> = [col1,col2];
+		for (i in 0...cols.length) {
+			CU.collide(charaCol, cols[i]);
+		}
+
 		if (charaCol.y <= 359 && asriel.y == 212) {
 			asriel.animation.play('Up');
 			FlxTween.tween(asriel,{y:165, x:380}, 0.6, {onComplete: asMove1});
@@ -119,5 +142,18 @@ class Zone3 extends FlxState {
 		asriel.animation.play('Up');
 		FlxTween.tween(asriel, {alpha: 0}, 0.6);
 		FlxTween.tween(asriel, {y: -100, x: 306}, 1.2);
+	}
+
+	function createAndAddFlxSprite(x:Int, y:Int, width:Int, height:Int, ?color:FlxColor = FlxColor.RED):FlxSprite
+	{
+		var sprite = new FlxSprite(x, y);
+		sprite.makeGraphic(width, height, color);
+		sprite.updateHitbox();
+		add(sprite);
+		return sprite;
+	}
+
+	function checkCollision() {
+	   checkTrigger = true;
 	}
 }

@@ -239,6 +239,7 @@ import sys.FileSystem;
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_dialogues_2_4_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_dialogues_2_5_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_dialogues_2_6_txt extends null { }
+@:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_dialogues_dial1_json extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_gamejolt_auth_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_gamejolt_authagain_txt extends null { }
 @:keep @:bind @:noCompletion #if display private #end class __ASSET__assets_langs_spanish_gamejolt_back_txt extends null { }

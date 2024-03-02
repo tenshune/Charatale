@@ -36,8 +36,8 @@ class Paths {
 		return "assets/fonts/" + name + ".otf";
 	}
 
-   static public function lang(lang:String, name:String) {
-      return "assets/langs/"+lang.toLowerCase()+"/"+name+".txt";
+   static public function lang(lang:String, name:String, ?ext:String = 'txt') {
+      return "assets/langs/"+lang.toLowerCase()+"/"+name+"."+ext;
    }
 
 	static public function langImg(lang:String, name:String)

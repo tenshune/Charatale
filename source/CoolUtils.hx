@@ -88,19 +88,30 @@ class CoolUtils {
 		}else{
 			if (o1xR > o2xL && o1yD < o2yD && o1xR < o2xR + 5 && o1yD > o2yU + 5)
 			{
-				callBack();
+				if (callBack != null) {
+					callBack();
+				}
 			}
 			if (o1xL < o2xR && o1yD < o2yD && o1xR > o2xL + 5 && o1yD > o2yU + 5)
 			{
-				callBack();
+				if (callBack != null)
+				{
+					callBack();
+				}
 			}
 			if (o1yD > o2yU && o1xL < o2xR - 5 && o1xR > o2xL + 5 && o1yD < o2yD)
 			{
-				callBack();
+				if (callBack != null)
+				{
+					callBack();
+				}
 			}
 			if (o1yU < o2yD && o1xL < o2xR - 5 && o1xR > o2xL + 5 && o1yU > o2yU)
 			{
-				callBack();
+				if (callBack != null)
+				{
+					callBack();
+				}
 			}
 		}
 	}
