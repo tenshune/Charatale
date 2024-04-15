@@ -57,18 +57,23 @@ class CoolUtils {
 		}
 	}
 
-	static public function collide(obj1:FlxSprite,obj2:FlxSprite, ?trigger:Bool = false, ?callBack:Dynamic) {
+	static public function collide(obj1:FlxSprite, obj2:FlxSprite, ?trigger:Bool = false, ?callBack:Dynamic)
+	{
+		var angleRad = Math.atan2(obj2.y - obj1.y, obj2.x - obj1.x);
+		var angleDeg = angleRad * 180 / Math.PI;
+
 		var o1xL = obj1.x;
 		var o1yU = obj1.y;
-		var o1xR = obj1.x+obj1.width;
-		var o1yD = obj1.y+obj1.height;
+		var o1xR = obj1.x + obj1.width;
+		var o1yD = obj1.y + obj1.height;
 
 		var o2xL = obj2.x;
 		var o2yU = obj2.y;
-		var o2xR = obj2.x+obj2.width;
-		var o2yD = obj2.y+obj2.height;
+		var o2xR = obj2.x + obj2.width;
+		var o2yD = obj2.y + obj2.height;
 
-		if (!trigger) {
+		if (!trigger)
+		{
 			if (o1xR > o2xL && o1yD < o2yD && o1xR < o2xR + 5 && o1yD > o2yU + 5)
 			{
 				obj1.x = o2xL - obj1.width;
@@ -85,34 +90,12 @@ class CoolUtils {
 			{
 				obj1.y = o2yD;
 			}
-		}else{
-			if (o1xR > o2xL && o1yD < o2yD && o1xR < o2xR + 5 && o1yD > o2yU + 5)
-			{
-				if (callBack != null) {
-					callBack();
-				}
-			}
-			if (o1xL < o2xR && o1yD < o2yD && o1xR > o2xL + 5 && o1yD > o2yU + 5)
-			{
-				if (callBack != null)
-				{
-					callBack();
-				}
-			}
-			if (o1yD > o2yU && o1xL < o2xR - 5 && o1xR > o2xL + 5 && o1yD < o2yD)
-			{
-				if (callBack != null)
-				{
-					callBack();
-				}
-			}
-			if (o1yU < o2yD && o1xL < o2xR - 5 && o1xR > o2xL + 5 && o1yU > o2yU)
-			{
-				if (callBack != null)
-				{
-					callBack();
-				}
-			}
+		}
+		else
+		{
+			// Aquí puedes agregar el manejo de colisiones basado en ángulos
+			// Usar el ángulo angleDeg para determinar la dirección de la colisión
 		}
 	}
+
 }

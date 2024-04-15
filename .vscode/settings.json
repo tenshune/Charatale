@@ -10,5 +10,5 @@
 		}
 	},
 	"haxe.enableExtendedIndentation": true,
-	"CodeGPT.apiKey": "CodeGPT Plus Beta"
+	"CodeGPT.apiKey": "Azure"
 }

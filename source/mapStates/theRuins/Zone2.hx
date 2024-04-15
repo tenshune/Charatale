@@ -91,7 +91,7 @@ class Zone2 extends FlxState
 		asriel.screenCenter(X);
 		add(asriel);
 
-		charaCol = new FlxSprite(FlxG.width / 2 - 35, FlxG.height / 2 - 50);
+		charaCol = new FlxSprite(FlxG.width / 2 - (35/2), FlxG.height / 2 - 50);
 		charaCol.makeGraphic(40, 25, FlxColor.LIME);
 		charaCol.visible = false;
 		charaCol.y = Math.floor(zone.height) * 2 - 100;
@@ -248,14 +248,17 @@ class Zone2 extends FlxState
 	function byeAs(t:FlxTween)
 	{
 		asriel.animation.play("Up");
-		FlxTween.tween(cam, {y: cam.y + 30}, 0.5);
+		FlxTween.tween(cam, {y: cam.y + 40}, 0.5);
 		FlxTween.tween(asriel, {y: -150}, 2.5, {onComplete: moveAgain});
 	}
 
 	function moveAgain(t:FlxTween)
 	{
 		asriel.visible = false;
-		FlxTween.tween(cam, {y: cam.y - 30}, 0.15);
+		FlxTween.tween(cam, {y: cam.y - 40}, 0.3, {onComplete: reMove});
+	}
+
+	function reMove(t:FlxTween) {
 		canMove = true;
 	}
 

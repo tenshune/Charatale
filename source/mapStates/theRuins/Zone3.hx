@@ -30,6 +30,16 @@ class Zone3 extends FlxState {
 	var col3:FlxSprite;
 	var col4:FlxSprite;
 	var col5:FlxSprite;
+	var col6:FlxSprite;
+	var col7:FlxSprite;
+	var col8:FlxSprite;
+	var col9:FlxSprite;
+	var col10:FlxSprite;
+	var col11:FlxSprite;
+	var col12:FlxSprite;
+	var col13:FlxSprite;
+	var col14:FlxSprite;
+	var col15:FlxSprite;
 
     override function create() {
 
@@ -63,6 +73,19 @@ class Zone3 extends FlxState {
 
 		col1 = createAndAddFlxSprite(2, -250, 80, 10000);
 		col2 = createAndAddFlxSprite(562, -250, 80, 10000);
+		col3 = createAndAddFlxSprite(80, 143, 45, 10000);
+		col4 = createAndAddFlxSprite(522, 143, 45, 10000);
+		col5 = createAndAddFlxSprite(182,500,20,20);
+		col6 = createAndAddFlxSprite(186, 504, 20, 20);
+		col7 = createAndAddFlxSprite(190, 508, 20, 20);
+		col8 = createAndAddFlxSprite(194, 512, 20, 20);
+		col9 = createAndAddFlxSprite(198, 516, 20, 20);
+		col10 = createAndAddFlxSprite(202, 520, 20, 20);
+		col11 = createAndAddFlxSprite(206, 524, 20, 20);
+		col12 = createAndAddFlxSprite(210, 528, 20, 20);
+		col13 = createAndAddFlxSprite(214, 532, 20, 20);
+		col14 = createAndAddFlxSprite(218, 536, 20, 20);
+		col15 = createAndAddFlxSprite(222, 540, 20, 20);
 
 		chara = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
 		chara.frames = Paths.getSparrowAtlas('Chara');
@@ -107,7 +130,7 @@ class Zone3 extends FlxState {
 		CU.collide(charaCol, check);
 		CU.collide(chara, check, true,checkCollision);
 
-		var cols:Array<FlxSprite> = [col1,col2];
+		var cols:Array<FlxSprite> = [col1,col2,col3,col4,col5,col6,col7,col8,col9,col10,col11,col12,col13,col14,col15];
 		for (i in 0...cols.length) {
 			CU.collide(charaCol, cols[i]);
 		}
