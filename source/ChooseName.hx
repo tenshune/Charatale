@@ -182,7 +182,9 @@ class ChooseName extends FlxState
 			Global.dark = 0;
 		}
 
-		FlxG.cameras.shake(shakeIntensity,0.1);
+		if (save.data.shake == true) {
+			FlxG.cameras.shake(shakeIntensity, 0.1);
+		}
 
 		for (i in 0...letters.length)
 		{
@@ -522,14 +524,14 @@ class ChooseName extends FlxState
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
 			shakeIntensity = 0.003;
 		}
-		else if (nameStr.toLowerCase() == 'angelfoxiano')
+		else if (nameStr.toLowerCase() == 'tenshune')
 		{
 			secret.text = Assets.getText(Paths.lang(lang, 'choose/secrets/angel'));
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
 			canSelect = false;
 			shakeIntensity = 0.003;
 		}
-		else if (nameStr.toLowerCase() == 'tem' || nameStr.toLowerCase() == 'temmie')
+		else if (nameStr.toLowerCase() == 'tem' || nameStr.toLowerCase() == 'temmie' || nameStr.toLowerCase() == 'temm')
 		{
 			secret.text = 'HoI!!11!!!';
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
@@ -543,7 +545,7 @@ class ChooseName extends FlxState
 		}
 		else if (nameStr.toLowerCase() == 'markiplier' && lang.toLowerCase() == 'english')
 		{
-			secret.text = 'Hello my name is Markiplier.';
+			secret.text = 'Hello everybody my name is Markiplier.';
 			FlxTween.tween(secret, {alpha: 1}, 0.7);
 			shakeIntensity = 0.003;
 		}else{

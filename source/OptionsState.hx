@@ -22,6 +22,9 @@ class OptionsState extends FlxState
 	var langOp:FlxText;
 	var langs:Array<String> = ['English', 'Spanish'];
 	var gamejolt:FlxText;
+	var shake:FlxText;
+	var shakeOp:FlxText;
+	var shakeBool:Bool = true;
 
 	var leftSel:FlxText;
 	var rightSel:FlxText;
@@ -41,6 +44,12 @@ class OptionsState extends FlxState
 		}else if (save.data.lang == 'Spanish') {
 			langSel = 1;
 		}
+
+		if (save.data.shake = true) {
+			shakeBool = true;
+		}else{
+			shakeBool = false;
+        }
 
 		options = new FlxSprite(-50, 10);
 		options.scale.x = 0.75;
@@ -68,6 +77,16 @@ class OptionsState extends FlxState
 		rightSel = new FlxText(218, 152.5, 50, '>');
 		rightSel.setFormat(Paths.font('determination'), 30, FlxColor.YELLOW);
 		add(rightSel);
+
+		shake = new FlxText(0,275,290,'Shakes\nFlashes');
+		shake.setFormat(Paths.font('determination'), 45, FlxColor.WHITE);
+		shake.alignment = 'center';
+		add(shake);
+
+		shakeOp = new FlxText(0, 375.5, 290, Std.string(shakeBool));
+		shakeOp.setFormat(Paths.font('determination'), 35, FlxColor.WHITE);
+		shakeOp.alignment = 'center';
+        add(shakeOp);
 
 		super.create();
 
@@ -123,7 +142,39 @@ class OptionsState extends FlxState
 			gamejolt.setFormat(Paths.font('determination'), 50, FlxColor.WHITE, CENTER);
 		}
 
-		var maxSel = 1;
+		if (selected == 2) {
+			shakeOp.setFormat(Paths.font('determination'), 35, FlxColor.YELLOW, CENTER);
+
+			leftSel.visible = true;
+			rightSel.visible = true;
+			leftSel.y = 380;
+			rightSel.y = 380;
+
+			if (shakeBool) {
+				leftSel.x = 40;
+				rightSel.x = 230;
+			}else{
+				leftSel.x = 25;
+				rightSel.x = 245;
+			}
+
+			if (FlxG.keys.justPressed.RIGHT)
+			{
+				shakeBool = !shakeBool;
+				save.data.shake = shakeBool;
+                save.flush();
+			}
+			else if (FlxG.keys.justPressed.LEFT)
+			{
+				shakeBool = !shakeBool;
+				save.data.shake = shakeBool;
+				save.flush();
+			}
+		}else{
+			shakeOp.setFormat(Paths.font('determination'), 35, FlxColor.WHITE, CENTER);
+		}
+
+		var maxSel = 2;
 		var maxLangs = 2;
 		var lan:String = save.data.lang;
 		var langS:Array<String> = [
@@ -150,8 +201,20 @@ class OptionsState extends FlxState
 		}
 		langOp.text = langS[langSel];
 		langT.text = Assets.getText(Paths.lang(lan.toLowerCase(), 'options/lang'));
+		shake.text = Assets.getText(Paths.lang(lan.toLowerCase(), 'options/shakeflash'));
+		if (shakeBool) {
+			shakeOp.text = Assets.getText(Paths.lang(lan.toLowerCase(), 'options/active'));
+		}else{
+			shakeOp.text = Assets.getText(Paths.lang(lan.toLowerCase(), 'options/deact'));
+		}
 
 		options.loadGraphic(Paths.langImg(lan.toLowerCase(),'img/options'));
+
+		if (lan.toLowerCase() == 'spanish') {
+			options.x = -50;
+		}else{
+			options.x = -42;
+		}
 
 		super.update(elapsed);
 

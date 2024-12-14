@@ -40,9 +40,9 @@ class MainMenuState extends FlxState
 
     override function create() {
 		var secret:Bool = false;
-		var randomNumber:Int = Std.random(2000) + 1;
+		var randomNumber:Int = Std.random(2015) + 1;
 
-		if (randomNumber == 1509 || randomNumber == 915)
+		if (randomNumber == 1509 || randomNumber == 915 || randomNumber == 2015 || randomNumber == 9 || randomNumber == 15)
 		{
 			secret = true;
 		}
@@ -52,6 +52,11 @@ class MainMenuState extends FlxState
 
         if (save.data.lang == null) {
             save.data.lang = 'English';
+            save.flush();
+        }
+
+        if (save.data.shake == null) {
+            save.data.shake = true;
             save.flush();
         }
 

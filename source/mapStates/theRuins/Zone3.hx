@@ -40,6 +40,16 @@ class Zone3 extends FlxState {
 	var col13:FlxSprite;
 	var col14:FlxSprite;
 	var col15:FlxSprite;
+	var col16:FlxSprite;
+	var col17:FlxSprite;
+	var col18:FlxSprite;
+	var col19:FlxSprite;
+	var col20:FlxSprite;
+	var col21:FlxSprite;
+	var col22:FlxSprite;
+	var col23:FlxSprite;
+	var col24:FlxSprite;
+	var col25:FlxSprite;
 
     override function create() {
 
@@ -86,6 +96,10 @@ class Zone3 extends FlxState {
 		col13 = createAndAddFlxSprite(214, 532, 20, 20);
 		col14 = createAndAddFlxSprite(218, 536, 20, 20);
 		col15 = createAndAddFlxSprite(222, 540, 20, 20);
+
+		col16 = createAndAddFlxSprite(402, 540, 20, 20);
+		col15 = createAndAddFlxSprite(406, 536, 20, 20);
+		col17 = createAndAddFlxSprite(410, 532, 20, 20);
 
 		chara = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
 		chara.frames = Paths.getSparrowAtlas('Chara');
