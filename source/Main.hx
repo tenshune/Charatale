@@ -8,7 +8,7 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
-		addChild(new FlxGame(0, 0, mapStates.theRuins.Zone3));
+		addChild(new FlxGame(0, 0, mapStates.theRuins.Zone4));
 		// mapStates.theRuins.Zone2
 	}
 }

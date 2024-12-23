@@ -93,8 +93,22 @@ class CoolUtils {
 		}
 		else
 		{
-			// Aquí puedes agregar el manejo de colisiones basado en ángulos
-			// Usar el ángulo angleDeg para determinar la dirección de la colisión
+			if (o1xR > o2xL && o1yD < o2yD && o1xR < o2xR + 5 && o1yD > o2yU + 5)
+			{
+				callBack();
+			}
+			if (o1xL < o2xR && o1yD < o2yD && o1xR > o2xL + 5 && o1yD > o2yU + 5)
+			{
+				callBack();
+			}
+			if (o1yD > o2yU && o1xL < o2xR - 5 && o1xR > o2xL + 5 && o1yD < o2yD)
+			{
+				callBack();
+			}
+			if (o1yU < o2yD && o1xL < o2xR - 5 && o1xR > o2xL + 5 && o1yU > o2yU)
+			{
+				callBack();
+			}
 		}
 	}
 

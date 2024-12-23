@@ -10,7 +10,7 @@ class Transitions extends FlxSprite {
     
     static var dark:FlxSprite;
 
-    public function darkInit() {
+    public static function darkInit() {
 		dark = new FlxSprite(0, 0);
 		dark.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		dark.alpha = 0;

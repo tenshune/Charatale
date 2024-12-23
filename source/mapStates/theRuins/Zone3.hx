@@ -1,6 +1,8 @@
 package mapStates.theRuins;
 
-import flixel.util.FlxCollision;
+import flixel.FlxCamera;
+import flixel.util.FlxTimer;
+import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.FlxG;
@@ -9,6 +11,7 @@ import flixel.FlxState;
 
 import player.CameraFuncs as Cam;
 import player.Movement;
+import Transitions as Trans;
 
 import CoolUtils as CU;
 
@@ -51,6 +54,8 @@ class Zone3 extends FlxState {
 	var col23:FlxSprite;
 	var col24:FlxSprite;
 	var tri1:FlxSprite;
+
+	var dark:FlxSprite;
 
     override function create() {
 
@@ -96,7 +101,6 @@ class Zone3 extends FlxState {
 		col12 = createAndAddFlxSprite(510, 140, 60, 20);
 		col13 = createAndAddFlxSprite(520, 130, 60, 20);
 		col14 = createAndAddFlxSprite(530, 120, 60, 20);
-		col15 = createAndAddFlxSprite(540, 110, 60, 20);
 
 		col16 = createAndAddFlxSprite(135, 160, 20, 20);
 		col15 = createAndAddFlxSprite(125, 150, 20, 20);
@@ -104,11 +108,11 @@ class Zone3 extends FlxState {
 		col18 = createAndAddFlxSprite(105, 130, 20, 20);
 		col19 = createAndAddFlxSprite(95, 120, 20, 20);
 		col20 = createAndAddFlxSprite(85, 110, 20, 20);
-		col21 = createAndAddFlxSprite(0, -244, 300, 220);
+		col21 = createAndAddFlxSprite(0, -244, 290, 220);
 		col22 = createAndAddFlxSprite(58, -24, 60, 20);
 		col23 = createAndAddFlxSprite(540, -24, 20, 20);
-		col24 = createAndAddFlxSprite(345, -244, 300, 220);
-		//tri1 = createAndAddFlxSprite(442, 500, 20, 20);
+		col24 = createAndAddFlxSprite(355, -244, 300, 220);
+		tri1 = createAndAddFlxSprite(300, -260, 45, 220,FlxColor.GREEN);
 
 		chara = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
 		chara.frames = Paths.getSparrowAtlas('Chara');
@@ -134,6 +138,13 @@ class Zone3 extends FlxState {
 
 		Cam.newFollow(chara, 0, zone.y, zone.x + zone.width, zone.y + zone.height*1.23);
 
+		dark = new FlxSprite(0, -250);
+		dark.makeGraphic(FlxG.width, FlxG.height*2, FlxColor.BLACK);
+		dark.alpha = 1;
+		add(dark);
+
+		FlxTween.tween(dark,{alpha:0},0.5);
+
         super.create();
     }
 
@@ -153,11 +164,13 @@ class Zone3 extends FlxState {
 		CU.collide(charaCol, check);
 		CU.collide(chara, check, true,checkCollision);
 
-		var cols:Array<FlxSprite> = [col1,col2,col3,col4,col5,col6,col7,col8,col9,col10,col11,col12,col13,col14,col15,col16,col17,col18,col19,col20,col21,col22,col23,col23,col24];
+		var cols:Array<FlxSprite> = [col1,col2,col3,col4,col5,col6,col7,col8,col9,col10,col11,col12,col13,col14,col16,col17,col18,col19,col20,col21,col22,col23,col23,col24];
 		for (i in 0...cols.length) {
 			CU.collide(charaCol, cols[i]);
-			cols[i].alpha = 0;
+			cols[i].visible = false;
 		}
+
+		CU.collide(charaCol, tri1, true, transition);
 
 		if (charaCol.y <= 359 && asriel.y == 212) {
 			asriel.animation.play('Up');
@@ -197,11 +210,21 @@ class Zone3 extends FlxState {
 		sprite.makeGraphic(width, height, color);
 		sprite.updateHitbox();
 		add(sprite);
-		sprite.solid = sprite.immovable = true;
 		return sprite;
 	}
 
 	function checkCollision() {
 	   checkTrigger = true;
+	}
+
+	function transition() {
+	   canMove = false;
+	   FlxTween.tween(dark,{alpha:1},1,{ease: FlxEase.linear, onComplete: switchS});
+	   FlxTween.tween(chara,{y: chara.y-20},1);
+	   FlxTween.tween(chara,{alpha:0},1);
+	}
+
+    function switchS(t:FlxTween) {
+	   FlxG.switchState(new mapStates.theRuins.Zone4());
 	}
 }
