@@ -1,5 +1,6 @@
 package mapStates.theRuins;
 
+import flixel.util.FlxCollision;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.FlxG;
@@ -49,7 +50,7 @@ class Zone3 extends FlxState {
 	var col22:FlxSprite;
 	var col23:FlxSprite;
 	var col24:FlxSprite;
-	var col25:FlxSprite;
+	var tri1:FlxSprite;
 
     override function create() {
 
@@ -85,21 +86,29 @@ class Zone3 extends FlxState {
 		col2 = createAndAddFlxSprite(562, -250, 80, 10000);
 		col3 = createAndAddFlxSprite(80, 143, 45, 10000);
 		col4 = createAndAddFlxSprite(522, 143, 45, 10000);
-		col5 = createAndAddFlxSprite(182,500,20,20);
-		col6 = createAndAddFlxSprite(186, 504, 20, 20);
-		col7 = createAndAddFlxSprite(190, 508, 20, 20);
-		col8 = createAndAddFlxSprite(194, 512, 20, 20);
-		col9 = createAndAddFlxSprite(198, 516, 20, 20);
-		col10 = createAndAddFlxSprite(202, 520, 20, 20);
-		col11 = createAndAddFlxSprite(206, 524, 20, 20);
-		col12 = createAndAddFlxSprite(210, 528, 20, 20);
-		col13 = createAndAddFlxSprite(214, 532, 20, 20);
-		col14 = createAndAddFlxSprite(218, 536, 20, 20);
-		col15 = createAndAddFlxSprite(222, 540, 20, 20);
+		col5 = createAndAddFlxSprite(96,500,146,300);
+		col6 = createAndAddFlxSprite(402, 500, 200, 200);
+		col7 = createAndAddFlxSprite(96, 580, 190, 300);
+		col8 = createAndAddFlxSprite(358, 580, 200, 300);
+		col9 = createAndAddFlxSprite(180, 21, 285, 70);
+		col10 = createAndAddFlxSprite(490, 160, 60, 20);
+		col11 = createAndAddFlxSprite(500, 150, 60, 20);
+		col12 = createAndAddFlxSprite(510, 140, 60, 20);
+		col13 = createAndAddFlxSprite(520, 130, 60, 20);
+		col14 = createAndAddFlxSprite(530, 120, 60, 20);
+		col15 = createAndAddFlxSprite(540, 110, 60, 20);
 
-		col16 = createAndAddFlxSprite(402, 540, 20, 20);
-		col15 = createAndAddFlxSprite(406, 536, 20, 20);
-		col17 = createAndAddFlxSprite(410, 532, 20, 20);
+		col16 = createAndAddFlxSprite(135, 160, 20, 20);
+		col15 = createAndAddFlxSprite(125, 150, 20, 20);
+		col17 = createAndAddFlxSprite(115, 140, 20, 20);
+		col18 = createAndAddFlxSprite(105, 130, 20, 20);
+		col19 = createAndAddFlxSprite(95, 120, 20, 20);
+		col20 = createAndAddFlxSprite(85, 110, 20, 20);
+		col21 = createAndAddFlxSprite(0, -244, 300, 220);
+		col22 = createAndAddFlxSprite(58, -24, 60, 20);
+		col23 = createAndAddFlxSprite(540, -24, 20, 20);
+		col24 = createAndAddFlxSprite(345, -244, 300, 220);
+		//tri1 = createAndAddFlxSprite(442, 500, 20, 20);
 
 		chara = new FlxSprite(FlxG.width / 2, FlxG.height / 2);
 		chara.frames = Paths.getSparrowAtlas('Chara');
@@ -144,9 +153,10 @@ class Zone3 extends FlxState {
 		CU.collide(charaCol, check);
 		CU.collide(chara, check, true,checkCollision);
 
-		var cols:Array<FlxSprite> = [col1,col2,col3,col4,col5,col6,col7,col8,col9,col10,col11,col12,col13,col14,col15];
+		var cols:Array<FlxSprite> = [col1,col2,col3,col4,col5,col6,col7,col8,col9,col10,col11,col12,col13,col14,col15,col16,col17,col18,col19,col20,col21,col22,col23,col23,col24];
 		for (i in 0...cols.length) {
 			CU.collide(charaCol, cols[i]);
+			cols[i].alpha = 0;
 		}
 
 		if (charaCol.y <= 359 && asriel.y == 212) {
@@ -187,6 +197,7 @@ class Zone3 extends FlxState {
 		sprite.makeGraphic(width, height, color);
 		sprite.updateHitbox();
 		add(sprite);
+		sprite.solid = sprite.immovable = true;
 		return sprite;
 	}
 
