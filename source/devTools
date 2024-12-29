@@ -1,0 +1,25 @@
+This is to position the collision more easily
+
+	var actualC:Array<FlxSprite>;
+	var cat:Int = 3;
+
+    //c = createAndAddFlxSprite(0, 0, 50, 50);
+
+    actualC = [];
+
+		if (FlxG.mouse.pressed) {
+			actualC[cat].x = FlxG.mouse.x;
+			actualC[cat].y = FlxG.mouse.y;
+		}
+
+		if (FlxG.keys.pressed.M && FlxG.keys.justPressed.V) {
+			actualC[cat].height += 5;
+		}
+		if (FlxG.keys.pressed.M && FlxG.keys.justPressed.H)
+		{
+			actualC[cat].width += 5;
+		}
+
+		if (FlxG.keys.justPressed.P) {
+			trace("X: "+actualC[cat].x+" Y: "+actualC[cat].y);
+		}

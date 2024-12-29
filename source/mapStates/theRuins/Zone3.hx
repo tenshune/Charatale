@@ -179,9 +179,6 @@ class Zone3 extends FlxState {
 
         super.update(elapsed);
 
-        if (FlxG.keys.justPressed.Z) {
-            trace('X = '+charaCol.x,'Y = '+charaCol.y);
-        }
     }
 
 	function asMove1(t:FlxTween) {

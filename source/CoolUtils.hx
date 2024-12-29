@@ -1,5 +1,6 @@
 package;
 
+import flixel.util.FlxTimer;
 import flixel.FlxSprite;
 import flixel.text.FlxText;
 import flixel.FlxG;
@@ -111,5 +112,4 @@ class CoolUtils {
 			}
 		}
 	}
-
 }
