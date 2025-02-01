@@ -32,8 +32,12 @@ class Zone4 extends FlxState {
     var c17:FlxSprite;
     var c18:FlxSprite;
 
+	var t1:FlxSprite;
+	var t2:FlxSprite;
+
 	var cols:Array<FlxSprite>;
-	var cat:Int = 16;
+	var trigs:Array<FlxSprite>;
+	var cat:Int = 0;
 
 	var chara:FlxSprite;
 	var charaCol:FlxSprite;
@@ -66,9 +70,14 @@ class Zone4 extends FlxState {
 		c15 = createAndAddFlxSprite(158, 98, 50, 50);
 		c16 = createAndAddFlxSprite(207, 110, 32, 50);
 		c17 = createAndAddFlxSprite(385, 98, 80, 50);
+
+		t1 = createAndAddFlxSprite(157, 123, 50, 50, FlxColor.GREEN);
+		t2 = createAndAddFlxSprite(238, 100, 89, 50, FlxColor.GREEN);
 		//c = createAndAddFlxSprite(0, 0, 50, 50);
 
 		cols = [c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13,c14,c15,c16,c17];
+
+		trigs = [t1];
 
         super.create();
 
@@ -98,20 +107,20 @@ class Zone4 extends FlxState {
 	override function update(elapsed:Float) {
 
 		if (FlxG.mouse.pressed) {
-			cols[cat].x = FlxG.mouse.x;
-			cols[cat].y = FlxG.mouse.y;
+			trigs[cat].x = FlxG.mouse.x;
+			trigs[cat].y = FlxG.mouse.y;
 		}
 
 		if (FlxG.keys.pressed.M && FlxG.keys.justPressed.V) {
-			cols[cat].height += 5;
+			trigs[cat].height += 5;
 		}
 		if (FlxG.keys.pressed.M && FlxG.keys.justPressed.H)
 		{
-			cols[cat].width += 5;
+			trigs[cat].width += 5;
 		}
 
 		if (FlxG.keys.justPressed.P) {
-			trace("X: "+cols[cat].x+" Y: "+cols[cat].y);
+			trace("X: " + trigs[cat].x + " Y: " + trigs[cat].y);
 		}
 
 		super.update(elapsed);
@@ -128,7 +137,7 @@ class Zone4 extends FlxState {
 		for (i in 0...cols.length)
 		{
 			CU.collide(charaCol, cols[i]);
-			//cols[i].visible = false;
+			cols[i].visible = false;
 		}
 	}
 
